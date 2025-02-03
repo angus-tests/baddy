@@ -1,4 +1,9 @@
 
+<picture style="text-align: center;">
+  <source media="(prefers-color-scheme: dark)" srcset="static/images/logo.png">
+  <img alt="Baddy Logo" src="static/images/logo.png" width="300">
+</picture>
+
 # Baddy
 
 Business Analytics & Data Dashboard for You
