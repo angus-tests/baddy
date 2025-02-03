@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.urls import path
 
 from baddy import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('403/', views.four_three, name='403'),
     path("admin/", admin.site.urls),
+
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]
