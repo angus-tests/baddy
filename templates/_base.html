@@ -41,6 +41,11 @@
                 Logout
             </button>
         </form>
+        {% else %}
+            <!-- Login button positioned in the top-right -->
+            <a href="{% url 'login' %}" class="absolute top-1/2 right-5 -translate-y-1/2 bg-white text-rose-600 px-3 py-1.5 rounded-md text-sm font-semibold shadow-sm hover:bg-gray-100">
+                Login
+            </a>
         {% endif %}
     </div>
     <div class="bg-rose-200 p-2 overflow-hidden whitespace-nowrap relative">
@@ -52,7 +57,7 @@
     </div>
 </nav>
 
-    
+
     <div class="container mx-auto flex-grow h-full">
         {% block content %}
         {% endblock content %}

@@ -1,4 +1,5 @@
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
@@ -9,14 +10,17 @@ from django.contrib.auth import logout
 from django.views.decorators.http import require_POST
 
 
-@require_POST
-def logout_view(request):
-    """Logs out the user and redirects to the index page."""
-    logout(request)
-    return redirect('index')
-
-
 def index(request):
+
+    # Redirect to the dashboard if the user is already logged in
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
+    # Otherwise, render the index page
+    return render(request, 'baddy/index.html')
+
+
+def login_page(request):
     if request.user.is_authenticated:
         return redirect('dashboard')  # Redirect if already logged in
 
@@ -30,12 +34,7 @@ def index(request):
     else:
         form = AuthenticationForm()
 
-    return render(request, 'baddy/index.html', {'form': form})
-
-
-def dashboard(request):
-    # TODO add authentication check
-    return render(request, 'baddy/dashboard.html')
+    return render(request, 'baddy/login.html', {'form': form})
 
 
 def four_three(request: HttpRequest) -> HttpResponse:
@@ -44,3 +43,16 @@ def four_three(request: HttpRequest) -> HttpResponse:
     (This is a testing view, not a real view.)
     """
     return render(request, "403.html")
+
+
+@login_required
+def dashboard(request):
+    # TODO add authentication check
+    return render(request, 'baddy/dashboard.html')
+
+@require_POST
+def logout_view(request):
+    """Logs out the user and redirects to the index page."""
+    logout(request)
+    return redirect('index')
+
