@@ -17,6 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from baddy import views
+
 urlpatterns = [
+    path('', views.index, name='index'),
+    path('403/', views.four_three, name='403'),
     path("admin/", admin.site.urls),
 ]
