@@ -1,0 +1,48 @@
+
+{% load compress %}
+{% load static %}
+ 
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="{% static 'images/favicons/favicon-96x96.png' %}" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicons/favicon.svg' %}" />
+    <link rel="shortcut icon" href="{% static 'images/favicons/favicon.ico' %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-touch-icon.png' %}" />
+    <meta name="apple-mobile-web-app-title" content="Poo" />
+    <link rel="manifest" href="{% static 'images/favicons/site.webmanifest' %}" />
+    <title>Poo</title>
+    
+    {% compress css %}
+    <link rel="stylesheet"
+        href="{% static 'src/output.css' %}">
+    {% endcompress %}
+</head>
+ 
+<body class="bg-green-50 flex flex-col min-h-screen">
+    <div class="container mx-auto mt-4 flex-grow">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    
+    <footer class="bg-emerald-800 text-white">
+        <div class="w-full mx-auto max-w-screen-xl p-4 flex flex-col justify-center md:flex-row md:items-center md:justify-between">
+            <span class="text-sm text-gray-50 text-center">© <span id="year"></span> <strong>Baddy</strong> | Designed by DFTS
+            </span>
+        </div>
+    </footer>
+
+
+    <script>
+        // Dynamically set the current year in the footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+ 
+</html>
