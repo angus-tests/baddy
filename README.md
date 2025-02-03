@@ -1,8 +1,6 @@
 
-<picture style="text-align: center;">
-  <source media="(prefers-color-scheme: dark)" srcset="static/images/logo.png">
-  <img alt="Baddy Logo" src="static/images/logo.png" width="300">
-</picture>
+
+<p style="text-align: center;"><img src="static/images/logo.png"  width="500"></p>
 
 # Baddy
 
