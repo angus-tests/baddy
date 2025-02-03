@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 
 from baddy import views
-from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -26,4 +26,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 
     path('dashboard/', views.dashboard, name='dashboard'),
+
+    path('logout/', views.logout_view, name='logout'),
 ]
