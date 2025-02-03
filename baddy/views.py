@@ -9,3 +9,11 @@ def index(request: HttpRequest) -> HttpResponse:
     :return:
     """
     return render(request, "baddy/index.html")
+
+
+def four_three(request: HttpRequest) -> HttpResponse:
+    """
+    Render the 403 page.
+    (This is a testing view, not a real view.)
+    """
+    return render(request, "403.html")
