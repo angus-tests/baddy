@@ -1,0 +1,26 @@
+from dashboards.interfaces.dataset_repository_interface import DatasetRepositoryInterface
+from dashboards.models.dataset import Dataset
+
+
+class DatasetService:
+    """
+    Service class for interacting with datasets
+    """
+
+    def __init__(self, repository: DatasetRepositoryInterface):
+        self.repository = repository
+
+    def get_dataset(self, dataset_id: str):
+        """
+        Get a dataset by its ID.
+        :param dataset_id:
+        :return: Dataset object.
+        """
+        return self.repository.get_by_id(dataset_id)
+
+    def get_all_datasets(self) -> list[Dataset]:
+        """
+        Get all datasets.
+        :return: A list of Dataset objects.
+        """
+        return self.repository.get_all()

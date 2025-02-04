@@ -62,7 +62,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "compressor",
-    "baddy"
+    "baddy",
+    "dashboards",
 ]
 
 MARKDOWNIFY = {

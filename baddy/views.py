@@ -12,7 +12,7 @@ from django.views.decorators.http import require_POST
 
 def index(request):
 
-    # Redirect to the dashboard if the user is already logged in
+    # Redirect to the dashboards if the user is already logged in
     if request.user.is_authenticated:
         return redirect('dashboard')
 

@@ -1,7 +1,7 @@
 
 from abc import ABC, abstractmethod
 
-from dashboard.models.dataset import Dataset
+from dashboards.models.dataset import Dataset
 
 
 class DatasetRepositoryInterface(ABC):
