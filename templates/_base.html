@@ -76,6 +76,10 @@
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 
+    {% compress js %}
+    <script src="{% static 'src/js/flyonui.js' %}"></script>
+    {% endcompress %}
+
 </body>
 
 </html>
