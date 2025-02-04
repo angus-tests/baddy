@@ -29,7 +29,7 @@ urlpatterns = [
 
     path("admin/", admin.site.urls),
 
-    path('dashboard/', views.dashboard, name='dashboard'),
+    path('home/', views.home, name='home'),
 
     path("dashboards/", include("dashboards.urls")),  # Include dashboard-specific routes
 
