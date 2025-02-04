@@ -16,6 +16,20 @@
             {% with image_url=dataset_image title="SDS Datasets" description="View current dataset metadata" url=dataset_url %}
                 {% include "baddy/components/dashboard_card.html" %}
             {% endwith %}
+        
+            <!-- SDX health card -->
+            {% url 'dataset_dashboard' as dataset_url %}
+            {% static 'images/dashboards/sdx_health.svg' as dataset_image %}
+            {% with image_url=dataset_image title="SDX Health" description="View status of SDX apps" url=dataset_url %}
+                {% include "baddy/components/dashboard_card.html" %}
+            {% endwith %}
+        
+            <!-- Private card -->
+            {% url 'dataset_dashboard' as dataset_url %}
+            {% static 'images/dashboards/private.svg' as dataset_image %}
+            {% with image_url=dataset_image title="Super Secret" description="A super secret dashboard" url=dataset_url %}
+                {% include "baddy/components/dashboard_card.html" %}
+            {% endwith %}
         </div>
     </div>
 {% endblock content %}
