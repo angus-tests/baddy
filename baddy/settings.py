@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-1nze18c1fv*tq2%0#z%bo4uagw
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
-DEBUG = False
+#DEBUG = False
 
 # Get the ALLOWED_HOSTS environment variable from the environment or .env file
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
@@ -145,15 +145,16 @@ if DB_ENGINE == 'postgres':
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
-]
-
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+#     },
+#     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
+#     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
+#     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+# ]
+AUTH_PASSWORD_VALIDATORS = []
+LOGOUT_REDIRECT_URL = ''
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

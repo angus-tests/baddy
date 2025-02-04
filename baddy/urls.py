@@ -19,8 +19,17 @@ from django.urls import path
 
 from baddy import views
 
+
 urlpatterns = [
     path('', views.index, name='index'),
+
+    path('login/', views.login_page, name='login'),
+
     path('403/', views.four_three, name='403'),
+
     path("admin/", admin.site.urls),
+
+    path('dashboard/', views.dashboard, name='dashboard'),
+
+    path('logout/', views.logout_view, name='logout'),
 ]
