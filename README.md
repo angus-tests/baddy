@@ -34,6 +34,15 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+### Create a superuser
+
+To access the admin panel, create a superuser with the following command:
+```bash
+python manage.py createsuperuser
+```
+
+Then login to the admin panel at http://127.0.0.1:8000/admin/
+
 ## Testing when `DEBUG=False`
 
 When `DEBUG=False` static files are not served correctly. To overcome this, run the app with the following command:
