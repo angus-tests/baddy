@@ -12,9 +12,9 @@ from django.views.decorators.http import require_POST
 
 def index(request):
 
-    # Redirect to the dashboard if the user is already logged in
+    # Redirect to the dashboards if the user is already logged in
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('home')
 
     # Otherwise, render the index page
     return render(request, 'baddy/index.html')
@@ -22,7 +22,7 @@ def index(request):
 
 def login_page(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')  # Redirect if already logged in
+        return redirect('home')  # Redirect if already logged in
 
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -30,7 +30,7 @@ def login_page(request):
             # Get the authenticated user
             user = form.get_user()
             login(request, user)  # Log the user in
-            return redirect('dashboard')  # Redirect after successful login
+            return redirect('home')  # Redirect after successful login
     else:
         form = AuthenticationForm()
 
@@ -46,9 +46,9 @@ def four_three(request: HttpRequest) -> HttpResponse:
 
 
 @login_required
-def dashboard(request):
-    # TODO add authentication check
-    return render(request, 'baddy/dashboard.html')
+def home(request):
+    return render(request, 'baddy/home.html')
+
 
 @require_POST
 def logout_view(request):

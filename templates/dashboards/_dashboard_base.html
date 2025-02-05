@@ -1,0 +1,25 @@
+{% extends "_container.html" %}
+
+{% block container_content %}
+    <div class="py-12 flex flex-col space-y-16">
+        <div class="flex flex-col space-y-4">
+            <div>
+                <!-- Breadcrumbs Section -->
+                <a href="{% url 'index' %}" class="btn btn-secondary btn-soft"><span class="icon-[tabler--arrow-left] size-6"></span> Home</a>
+            </div>
+
+            <!-- Dashboard Title and Description Section -->
+            <div class="mb-8">
+                <h1 class="text-base-content text-5xl">{% block title %}Dashboard Title{% endblock %}</h1>
+                <p class="text-lg text-gray-600 mt-2">{% block description %}Dashboard description goes here.{% endblock %}</p>
+            </div>
+        </div>
+
+        <!-- Content Block -->
+        <div>
+            {% block dashboard %}
+            {% endblock %}
+        </div>
+    </div>
+    
+{% endblock %}

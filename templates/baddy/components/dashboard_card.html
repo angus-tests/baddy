@@ -1,0 +1,14 @@
+<div class="card group hover:shadow sm:max-w-sm bg-base-100 mx-auto min-w-80">
+    <figure class="h-36 bg-neutral-200 flex justify-center items-center overflow-hidden">
+        <img src="{{ image_url }}" alt="{{ title }}" class="w-44 h-44 object-contain transition-transform duration-500 group-hover:scale-110" />
+    </figure>
+    <div class="card-body">
+        <h5 class="card-title mb-2.5">{{ title }}</h5>
+        <p class="mb-6">{{ description }}</p>
+        <div class="card-actions">
+            <a href="{{ url }}" class="btn btn-primary">
+                View
+            </a>
+        </div>
+    </div>
+</div>
