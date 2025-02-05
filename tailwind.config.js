@@ -5,7 +5,11 @@ module.exports = {
     './node_modules/flyonui/dist/js/*.js',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "sand": "#F9F5E1",
+      },
+    },
   },
   flyonui: {
 
@@ -15,9 +19,6 @@ module.exports = {
           ...require("flyonui/src/theming/themes")["light"],
           "primary": "#F43F5E",
           "primary-content": "#FFFFFF",
-          "base-100": "#F9F5E1",
-          "base-200": "#EBE8D8",
-          "base-300": "#CAC8BA",
         }
       },
     ]
