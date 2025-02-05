@@ -1,0 +1,47 @@
+<div class="card sm:max-w-sm">
+    <div class="card-header">
+        <div class="flex flex-row items-center justify-between">
+            <div>
+                <h5 class="card-title">{{ service_name }}</h5>
+            </div>
+            <div class="avatar placeholder">
+                <!-- Conditional logic for the health status indicator -->
+                {% if is_healthy %}
+                    <div class="bg-success/40 text-success size-6 rounded-full">
+                        <span class="bg-success/70 text-success absolute size-3 animate-ping rounded-full opacity-75"></span>
+                    </div>
+                {% else %}
+                    <div class="bg-error/40 text-error size-6 rounded-full">
+                        <span class="bg-error/70 text-error absolute size-3 animate-ping rounded-full opacity-75"></span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <!-- Description list -->
+        <div>
+            <div class="border-t border-base-content/25">
+                <dl class="divide-y divide-base-content/25">
+                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 text-base">
+                        <dt class="font-medium text-base-content">Status</dt>
+                        <dd class="mt-1 text-base-content/80 sm:col-span-2 sm:mt-0">
+                            <!-- Display status text based on is_healthy -->
+                            {% if is_healthy %}
+                                Healthy
+                            {% else %}
+                                Unhealthy
+                            {% endif %}
+                        </dd>
+                    </div>
+                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 text-base">
+                        <dt class="font-medium text-base-content">Version</dt>
+                        <dd class="mt-1 text-base-content/80 sm:col-span-2 sm:mt-0">
+                            <span class="badge">{{ version }}</span>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
