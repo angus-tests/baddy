@@ -12,7 +12,7 @@
         <!-- Dashboard cards -->
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 items-center">
             
-            {% if request.user|has_group:"dfts_team" %}
+            {% if request.user|can_view_dashboard:"dataset_dashboard" %}
             <!-- Dataset card -->
             {% url 'dataset_dashboard' as dataset_url %}
             {% static 'images/dashboards/dataset.svg' as dataset_image %}
@@ -21,7 +21,7 @@
             {% endwith %}
             {% endif %}
             
-            {% if request.user|has_group:"sdx_team" %}
+            {% if request.user|can_view_dashboard:"sdx_health_dashboard" %}
             <!-- SDX health card -->
             {% url 'sdx_health_dashboard' as dataset_url %}
             {% static 'images/dashboards/sdx_health.svg' as dataset_image %}
@@ -30,7 +30,7 @@
             {% endwith %}
             {% endif %}
         
-            {% if request.user.is_superuser %}
+            {% if request.user|can_view_dashboard:"secret_dashboard" %}
             <!-- Private card -->
             {% url 'secret_dashboard' as dataset_url %}
             {% static 'images/dashboards/private.svg' as dataset_image %}

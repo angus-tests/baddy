@@ -1,27 +1,23 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.models import User
 from django.shortcuts import render
 
-
-def has_dashboard_access(user: User, required_group: str) -> bool:
-    if user.is_superuser:
-        return True
-    return user.is_authenticated and user.groups.filter(name=required_group).exists()
+from dashboards.access_control import has_dashboard_access
 
 
 @login_required
-@user_passes_test(lambda u: has_dashboard_access(u, "dfts_team"))
+@user_passes_test(lambda u: has_dashboard_access(u, "dataset_dashboard"))
 def dataset_dashboard(request):
     return render(request, "dashboards/datasets.html")
 
 
 @login_required
-@user_passes_test(lambda u: has_dashboard_access(u, "sdx_team"))
+@user_passes_test(lambda u: has_dashboard_access(u, "sdx_health_dashboard"))
 def sdx_health_dashboard(request):
-    return render(request, "dashboards/sdxhealth.html")
+    return render(request, "dashboards/sdx_health.html")
 
 
 @login_required
+@user_passes_test(lambda u: has_dashboard_access(u, "secret_dashboard"))
 def secret_dashboard(request):
     # Check if superuser
     if request.user.is_superuser:

@@ -1,12 +1,12 @@
 from django import template
 from django.contrib.auth.models import User
 
+from dashboards.access_control import has_dashboard_access
+
 register = template.Library()
 
 
-@register.filter(name="has_group")
-def has_group(user: User, group_name: str):
+@register.filter(name="can_view_dashboard")
+def can_view_dashboard(user: User, dashboard_name: str):
     """Check if a user belongs to a specific group."""
-    if user.is_superuser:
-        return True
-    return user.groups.filter(name=group_name).exists()
+    return has_dashboard_access(user, dashboard_name)
