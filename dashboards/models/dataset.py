@@ -12,7 +12,8 @@ class Dataset:
     filename: str
     period: date
     survey_id: str
-    created_at: Optional[date] = None
+    schema_version: str
+    published_at: Optional[date] = None
 
     def __str__(self):
         return self.dataset_id

@@ -1,5 +1,6 @@
 from datetime import date, datetime
 from typing import Any, Optional
+from dateutil import parser
 
 from dashboards.models.dataset import Dataset
 
@@ -17,7 +18,8 @@ class DatasetFactory:
             filename=data["filename"],
             period=DatasetFactory.parse_date(data["period"]),
             survey_id=data["survey_id"],
-            created_at=DatasetFactory.parse_datetime(data.get("created_at")),
+            schema_version=data["schema_version"],
+            published_at=DatasetFactory.parse_datetime(data.get("published_at")),
         )
 
     @staticmethod
@@ -34,9 +36,15 @@ class DatasetFactory:
 
     @staticmethod
     def parse_datetime(value: Optional[Any]) -> Optional[datetime]:
-        """Parses a datetime string or object into a `datetime` instance."""
+        """Safely parses a datetime string into a `datetime` instance.
+        Returns None if parsing fails.
+        """
         if value is None:
             return None
         if isinstance(value, datetime):
             return value
-        return datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+
+        try:
+            return parser.parse(value)
+        except (ValueError, TypeError):
+            return None

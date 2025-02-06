@@ -1,8 +1,9 @@
 from dashboards.interfaces.dataset_repository_interface import DatasetRepositoryInterface
+from dashboards.interfaces.service import Service
 from dashboards.models.dataset import Dataset
 
 
-class DatasetService:
+class DatasetService(Service):
     """
     Service class for interacting with datasets
     """
