@@ -40,7 +40,11 @@
                             </td>
                             <td>{{ dataset.period }}</td>
                             <td>
-                                <span class="badge badge-success text-xs">{{ dataset.schema_version }}</span>
+                                {% if dataset.schema_version == 'v2' %}
+                                    <span class="badge badge-success text-xs">{{ dataset.schema_version }}</span>
+                                {% else %}
+                                    <span class="badge badge-warning text-xs">{{ dataset.schema_version }}</span>
+                                {% endif %}
                             </td>
                             <td>
                                 {{ dataset.survey_id }}

@@ -19,7 +19,7 @@ class DatasetFactory:
             period=DatasetFactory.parse_date(data["period"]),
             survey_id=data["survey_id"],
             schema_version=data["schema_version"],
-            published_at=DatasetFactory.parse_datetime(data.get("published_at")),
+            published_at=DatasetFactory.parse_date(data.get("published_at")),
         )
 
     @staticmethod
@@ -27,24 +27,9 @@ class DatasetFactory:
         """Creates a Dataset from keyword arguments."""
         return DatasetFactory.from_dict(kwargs)
 
-    @staticmethod
-    def parse_date(value: Any) -> date:
-        """Parses a date string or object into a `date` instance."""
-        if isinstance(value, date):
-            return value
-        return datetime.strptime(value, "%Y-%m-%d").date()
-
-    @staticmethod
-    def parse_datetime(value: Optional[Any]) -> Optional[datetime]:
-        """Safely parses a datetime string into a `datetime` instance.
-        Returns None if parsing fails.
+    @classmethod
+    def parse_date(cls, value: Any) -> Optional[date]:
+        """Parses a date string or object into a `date` instance.
+        Returns None if the format is incorrect.
         """
-        if value is None:
-            return None
-        if isinstance(value, datetime):
-            return value
-
-        try:
-            return parser.parse(value)
-        except (ValueError, TypeError):
-            return None
+        return value
