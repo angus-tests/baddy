@@ -63,6 +63,13 @@
                 <span class="font-semibold">{{  dataset_page.paginator.num_pages }}</span>
                 pages
             </div>
+            <div class="me-2 block max-w-sm text-sm font-normal text-gray-500 sm:mb-0">
+                Showing
+                <span class="font-semibold text-gray-900">{{ dataset_page.start_index }} - {{ dataset_page.end_index }}</span>
+                of
+                <span class="font-semibold ">{{ dataset_page.paginator.count }}</span>
+                results
+            </div>
             <nav class="flex items-center gap-x-1">
                 {% if dataset_page.has_previous %}
                     <a href="?page={{ dataset_page.previous_page_number }}" class="btn btn-soft">Previous</a>

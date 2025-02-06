@@ -16,7 +16,7 @@ def dataset_dashboard(request):
     datasets = dataset_service.get_all_datasets()
 
     # Paginate datasets (e.g., 10 datasets per page)
-    paginator = Paginator(datasets, 10)  # Adjust number per page as needed
+    paginator = Paginator(datasets, 50)  # Adjust number per page as needed
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
