@@ -4,7 +4,7 @@ from dashboards.models.dataset import Dataset
 from faker import Faker
 
 
-class DatasetFakeRepository(DatasetRepositoryInterface):
+class FakeDatasetRepository(DatasetRepositoryInterface):
     """
     A repository that will generate fake datasets.
     """
