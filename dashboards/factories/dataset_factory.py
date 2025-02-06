@@ -29,7 +29,13 @@ class DatasetFactory:
 
     @classmethod
     def parse_date(cls, value: Any) -> Optional[date]:
-        """Parses a date string or object into a `date` instance.
-        Returns None if the format is incorrect.
         """
-        return value
+        Ensure that the date is in the correct format.
+        """
+        if isinstance(value, date):
+            return value
+        elif isinstance(value, datetime):
+            return value.date()
+        elif isinstance(value, str):
+            return parser.parse(value).date()
+        return None

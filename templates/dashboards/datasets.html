@@ -34,11 +34,11 @@
                             <td>
                                 {{ dataset.dataset_id }}
                             </td>
-                            <td class="text-nowrap">{{ dataset.published_at }}</td>
+                            <td class="text-nowrap">{{ dataset.published_at|date:"d M Y" }}</td>
                             <td>
                                 <a href="#" class="link link-primary">{{ dataset.filename }}</a>
                             </td>
-                            <td>{{ dataset.period }}</td>
+                            <td>{{ dataset.period|date:"d/m/y" }}</td>
                             <td>
                                 {% if dataset.schema_version == 'v2' %}
                                     <span class="badge badge-success text-xs">{{ dataset.schema_version }}</span>
