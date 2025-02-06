@@ -33,20 +33,22 @@
                 <img alt="Logo for Baddy" src="{% static 'images/logo.svg' %}">
             </a>
         </div>
-        {% if user.is_authenticated %}
-        <!-- Logout button positioned in the top-right -->
-        <form action="{% url 'logout' %}" method="POST" class="absolute top-1/2 right-5 -translate-y-1/2">
-            {% csrf_token %}
-            <button type="submit" class="bg-white text-rose-600 px-3 py-1.5 rounded-md text-sm font-semibold shadow-sm hover:bg-gray-100">
-                Logout
-            </button>
-        </form>
-        {% else %}
-            <!-- Login button positioned in the top-right -->
-            <a href="{% url 'login' %}" class="absolute top-1/2 right-5 -translate-y-1/2 bg-white text-rose-600 px-3 py-1.5 rounded-md text-sm font-semibold shadow-sm hover:bg-gray-100">
-                Login
-            </a>
-        {% endif %}
+        <div class="absolute top-0 right-0 p-5">
+            {% if user.is_authenticated %}
+            <!-- Logout button positioned in the top-right -->
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn">
+                    Logout
+                </button>
+            </form>
+            {% else %}
+                <!-- Login button positioned in the top-right -->
+                <a href="{% url 'login' %}" class="btn">
+                    Login
+                </a>
+            {% endif %}
+        </div>
     </div>
     <div class="bg-rose-200 p-2 overflow-hidden whitespace-nowrap relative">
         <div id="marquee" class="text-center">
