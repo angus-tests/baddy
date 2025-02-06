@@ -1,15 +1,18 @@
-from django.db import models
+from dataclasses import dataclass
+from datetime import date
+from typing import Optional
 
 
-class Dataset(models.Model):
+@dataclass
+class Dataset:
     """
-    A model to store information about a dataset.
+    A class that represents a dataset
     """
-    dataset_id = models.CharField(max_length=255, unique=True)
-    filename = models.CharField(max_length=255)
-    period = models.DateField()
-    survey_id = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
+    dataset_id: str
+    filename: str
+    period: date
+    survey_id: str
+    created_at: Optional[date] = None
 
     def __str__(self):
         return self.dataset_id
