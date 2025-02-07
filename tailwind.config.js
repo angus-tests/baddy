@@ -7,7 +7,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "sand": "#F9F5E1",
+        sand: {
+          DEFAULT: "#F9F5E1",  // Light mode color
+          dark: "#1A1821",     // Dark mode variant
+      },
       },
     },
   },
@@ -19,11 +22,20 @@ module.exports = {
           ...require("flyonui/src/theming/themes")["light"],
           "primary": "#F43F5E",
           "primary-content": "#FFFFFF",
+
+        }
+      },
+      {
+        dark: {
+          ...require("flyonui/src/theming/themes")["dark"],
+          "primary": "#F43F5E",
+          "primary-content": "#FFFFFF",
         }
       },
     ]
 
-    },
+  },
+  darkMode: ['class', '[data-theme="dark"]'],
   plugins: [
     require('@tailwindcss/typography'),
     require('flyonui'),

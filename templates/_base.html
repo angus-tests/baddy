@@ -3,7 +3,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html  lang="en">
+<html  lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -25,39 +25,39 @@
     {% endcompress %}
 </head>
 
-<body class="bg-sand flex flex-col min-h-screen h-full">
-    <nav>
-    <div class="bg-rose-500 p-5 relative">
-        <div class="max-w-48 mx-auto">
-            <a href="{% url 'index' %}">
-                <img alt="Logo for Baddy" src="{% static 'images/logo.svg' %}">
-            </a>
-        </div>
-        <div class="absolute top-0 right-0 p-5">
-            {% if user.is_authenticated %}
-            <!-- Logout button positioned in the top-right -->
-            <form action="{% url 'logout' %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" class="btn">
-                    Logout
-                </button>
-            </form>
-            {% else %}
-                <!-- Login button positioned in the top-right -->
-                <a href="{% url 'login' %}" class="btn">
-                    Login
+<body class="bg-sand dark:bg-sand-dark flex flex-col min-h-screen h-full">
+    <nav data-theme="light">
+        <div class="bg-rose-500 p-5 relative">
+            <div class="max-w-48 mx-auto">
+                <a href="{% url 'index' %}">
+                    <img alt="Logo for Baddy" src="{% static 'images/logo.svg' %}">
                 </a>
-            {% endif %}
+            </div>
+            <div class="absolute top-0 right-0 p-5">
+                {% if user.is_authenticated %}
+                    <!-- Logout button positioned in the top-right -->
+                    <form action="{% url 'logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            Logout
+                        </button>
+                    </form>
+                {% else %}
+                    <!-- Login button positioned in the top-right -->
+                    <a href="{% url 'login' %}" class="btn">
+                        Login
+                    </a>
+                {% endif %}
+            </div>
         </div>
-    </div>
-    <div class="bg-rose-200 p-2 overflow-hidden whitespace-nowrap relative">
-        <div id="marquee" class="text-center">
-            <p class="text-rose-900 text-sm">
-                Business Analytics & Data Dashboard for You - by <span class="font-bold">DFTS</span>
-            </p>
+        <div class="bg-rose-200 p-2 overflow-hidden whitespace-nowrap relative">
+            <div id="marquee" class="text-center">
+                <p class="text-rose-900 text-sm">
+                    Business Analytics & Data Dashboard for You - by <span class="font-bold">DFTS</span>
+                </p>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
 
     <div class="container mx-auto flex-grow h-full">

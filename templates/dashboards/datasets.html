@@ -55,17 +55,17 @@
             </table>
         </div>
 
-        <div class="flex flex-wrap items-center justify-between gap-2 py-4 pt-6">
-            <div class="me-2 block max-w-sm text-sm font-normal text-gray-500 sm:mb-0">
+        <div class="flex flex-wrap items-center justify-between gap-2 py-4 mt-8 py-5 border-t border-base-content/50 ">
+            <div class="me-2 block max-w-sm text-sm font-normal text-base-content/70 sm:mb-0">
                 Page
-                <span class="font-semibold text-gray-900">{{ dataset_page.number }}</span>
+                <span class="font-semibold text-gray-900 dark:text-gray-200">{{ dataset_page.number }}</span>
                 of
                 <span class="font-semibold">{{  dataset_page.paginator.num_pages }}</span>
                 pages
             </div>
-            <div class="me-2 block max-w-sm text-sm font-normal text-gray-500 sm:mb-0">
+            <div class="me-2 block max-w-sm text-sm font-normal text-base-content/70 sm:mb-0">
                 Showing
-                <span class="font-semibold text-gray-900">{{ dataset_page.start_index }} - {{ dataset_page.end_index }}</span>
+                <span class="font-semibold text-gray-900 dark:text-gray-200">{{ dataset_page.start_index }} - {{ dataset_page.end_index }}</span>
                 of
                 <span class="font-semibold ">{{ dataset_page.paginator.count }}</span>
                 results
