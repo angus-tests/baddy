@@ -34,20 +34,31 @@
                 </a>
             </div>
             <div class="absolute top-0 right-0 p-5">
-                {% if user.is_authenticated %}
-                    <!-- Logout button positioned in the top-right -->
-                    <form action="{% url 'logout' %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" class="btn">
-                            Logout
-                        </button>
-                    </form>
-                {% else %}
-                    <!-- Login button positioned in the top-right -->
-                    <a href="{% url 'login' %}" class="btn">
-                        Login
-                    </a>
-                {% endif %}
+                <div class="flex flex-row items-center gap-3">
+                    <!-- Dark Mode Toggle Button -->
+                    <button id="dark-mode-toggle" type="button" class="btn btn-square" aria-label="Dark mode toggle button">
+                        <!-- Sun icon (light mode) -->
+                        <span class="icon-[tabler--sun-filled] hidden dark:block"></span>
+                        <!-- Moon icon (dark mode) -->
+                        <span class="icon-[tabler--moon-filled] dark:hidden"></span>
+                    </button>
+
+                    {% if user.is_authenticated %}
+                        <!-- Logout button positioned in the top-right -->
+                        <form action="{% url 'logout' %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">
+                                Logout
+                            </button>
+                        </form>
+                    {% else %}
+                        <!-- Login button positioned in the top-right -->
+                        <a href="{% url 'login' %}" class="btn">
+                            Login
+                        </a>
+                    {% endif %}
+                    
+                </div>
             </div>
         </div>
         <div class="bg-rose-200 p-2 overflow-hidden whitespace-nowrap relative">
@@ -78,6 +89,7 @@
 
     {% compress js %}
     <script src="{% static 'src/js/flyonui.js' %}"></script>
+    <script src="{% static 'src/js/dark.js' %}" defer></script>
     {% endcompress %}
 
 </body>
