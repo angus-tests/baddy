@@ -28,7 +28,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    
+
                     {% for dataset in dataset_page %}
                         <tr>
                             <td>
@@ -41,9 +41,9 @@
                             <td>{{ dataset.period|date:"d/m/y" }}</td>
                             <td>
                                 {% if dataset.schema_version == 'v2' %}
-                                    <span class="badge badge-success text-xs">{{ dataset.schema_version }}</span>
+                                    <span class="badge badge-success badge-soft text-xs">{{ dataset.schema_version }}</span>
                                 {% else %}
-                                    <span class="badge badge-warning text-xs">{{ dataset.schema_version }}</span>
+                                    <span class="badge badge-warning badge-soft text-xs">{{ dataset.schema_version }}</span>
                                 {% endif %}
                             </td>
                             <td>
@@ -73,7 +73,7 @@
             <nav class="flex items-center gap-x-1">
                 {% if dataset_page.has_previous %}
                     <a href="?page={{ dataset_page.previous_page_number }}" class="btn btn-soft">Previous</a>
-                {% endif %} 
+                {% endif %}
                 {% if dataset_page.has_next %}
                     <a href="?page={{ dataset_page.next_page_number }}" class="btn btn-soft">Next</a>
                 {% endif %}

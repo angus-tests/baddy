@@ -1,6 +1,6 @@
-from dashboards.factories.dataset_factory import DatasetFactory
-from dashboards.interfaces.dataset_repository_interface import DatasetRepositoryInterface
-from dashboards.models.dataset import Dataset
+from dashboards.factories.dataset.dataset_factory import DatasetFactory
+from dashboards.interfaces.dataset.dataset_repository_interface import DatasetRepositoryInterface
+from dashboards.models.dataset.dataset import Dataset
 from faker import Faker
 
 

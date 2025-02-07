@@ -1,6 +1,6 @@
-from dashboards.interfaces.dataset_repository_interface import DatasetRepositoryInterface
+from dashboards.interfaces.dataset.dataset_repository_interface import DatasetRepositoryInterface
 from dashboards.interfaces.service import Service
-from dashboards.models.dataset import Dataset
+from dashboards.models.dataset.dataset import Dataset
 
 
 class DatasetService(Service):
