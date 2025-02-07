@@ -1,6 +1,6 @@
 from datetime import date, datetime
 from typing import Any, Optional
-from dateutil import parser
+
 
 from dashboards.models.dataset import Dataset
 
@@ -37,5 +37,5 @@ class DatasetFactory:
         elif isinstance(value, datetime):
             return value.date()
         elif isinstance(value, str):
-            return parser.parse(value).date()
+            return datetime.strptime(value, "%Y-%m-%d").date()
         return None
