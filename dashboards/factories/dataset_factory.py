@@ -37,5 +37,4 @@ class DatasetFactory:
         elif isinstance(value, datetime):
             return value.date()
         elif isinstance(value, str):
-            return datetime.strptime(value, "%Y-%m-%d").date()
-        return None
+            return datetime.fromisoformat(value).date()
