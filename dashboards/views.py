@@ -40,9 +40,4 @@ def sdx_health_dashboard(request):
 @login_required
 @user_passes_test(lambda u: has_dashboard_access(u, "secret_dashboard"))
 def secret_dashboard(request):
-    # Check if superuser
-    if request.user.is_superuser:
-        return render(request, "dashboards/secret.html")
-
-    # Throw a 403
-    return render(request, "403.html", status=403)
+    return render(request, "dashboards/secret.html")

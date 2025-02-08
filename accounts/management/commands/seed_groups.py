@@ -12,6 +12,11 @@ class Command(BaseCommand):
             "non-technical": [],
             "sdx": [],
             "sds": [],
+            "support": [
+                "view_customuser",
+                "change_customuser",
+                "view_group",
+            ],
         }
 
         for group_name, permissions in groups.items():

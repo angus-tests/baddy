@@ -18,9 +18,26 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             "classes": ("wide",),
-            "fields": ("username", "email", "password1", "password2", "groups"),
+            "fields": ("username", "email", "password1", "password2", "groups", "is_staff"),
         }),
     )
+
+    # Get read-only fields in the change form
+    def get_readonly_fields(self, request, obj=None) -> list[str]:
+        # Get the current user
+        user = request.user
+
+        # If the current user is a superuser, allow editing all fields
+        if user.is_superuser:
+            return []
+
+        # If the user being viewed is a superuser, prevent editing groups
+        if obj.is_superuser and not user.is_superuser:
+            # Return all fields as read-only
+            return [field.name for field in self.model._meta.fields] + ["groups", 'user_permissions']
+
+        # Return the default read-only fields
+        return ["is_superuser", "is_staff", "is_active", "last_login", "date_joined", 'user_permissions']
 
 
 admin.site.register(CustomUser, CustomUserAdmin)

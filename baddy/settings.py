@@ -161,6 +161,9 @@ if DB_ENGINE == 'postgres':
 #     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 # ]
 AUTH_PASSWORD_VALIDATORS = []
+
+# LOGIN / LOGOUT SETTINGS
+LOGIN_URL = '/login'
 LOGOUT_REDIRECT_URL = ''
 
 # Internationalization
