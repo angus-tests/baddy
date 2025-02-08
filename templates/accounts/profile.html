@@ -1,7 +1,11 @@
 {% extends "_container.html" %}
 
 {% block container_content %}
+    <div class="flex flex-col space-y-4">
+    {% include "components/home_button.html" %}
     {% with title="Your profile" subtitle="Here you can update your account details" %}
         {% include "components/main_page_title.html" %}
     {% endwith %}
+    </div>
+    
 {% endblock container_content %}
