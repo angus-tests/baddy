@@ -17,6 +17,10 @@ class Command(BaseCommand):
                 "change_customuser",
                 "view_group",
             ],
+            "viewers": [
+                "view_customuser",
+                "view_group",
+            ],
         }
 
         for group_name, permissions in groups.items():
