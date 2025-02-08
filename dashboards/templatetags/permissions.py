@@ -8,5 +8,7 @@ register = template.Library()
 
 @register.filter(name="can_view_dashboard")
 def can_view_dashboard(user: User, dashboard_name: str):
-    """Check if a user belongs to a specific group."""
+    """
+    A template filter to check if a user can view a dashboard
+    """
     return has_dashboard_access(user, dashboard_name)

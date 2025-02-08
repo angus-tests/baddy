@@ -10,7 +10,7 @@ DASHBOARD_PERMISSIONS = {
 
 def has_dashboard_access(user: User | AbstractBaseUser, dashboard_name: str) -> bool:
     """Check if the user has access to a specific dashboard."""
-    if user.is_superuser:
+    if user.is_superuser or user.is_staff:
         return True
 
     required_group = DASHBOARD_PERMISSIONS.get(dashboard_name)
