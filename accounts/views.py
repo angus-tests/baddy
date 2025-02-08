@@ -21,7 +21,7 @@ def login_page(request):
     else:
         form = AuthenticationForm()
 
-    return render(request, 'registration/login.html', {'form': form})
+    return render(request, 'accounts/login.html', {'form': form})
 
 
 @require_POST
@@ -29,3 +29,7 @@ def logout_view(request):
     """Logs out the user and redirects to the index page."""
     logout(request)
     return redirect('index')
+
+
+def profile(request):
+    return render(request, 'accounts/profile.html')
