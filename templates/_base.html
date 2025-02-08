@@ -44,13 +44,27 @@
                     </button>
 
                     {% if user.is_authenticated %}
-                        <!-- Logout button positioned in the top-right -->
-                        <form action="{% url 'logout' %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" class="btn">
-                                Logout
+                        
+                        <div class="dropdown relative inline-flex rtl:[--placement:bottom-end]">
+                            <button id="dropdown-footer" type="button" class="dropdown-toggle btn" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                Account
+                                <span class="icon-[tabler--chevron-down] dropdown-open:rotate-180 size-4"></span>
                             </button>
-                        </form>
+                            <ul class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-footer">
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                {% if user.is_staff %}
+                                <li><a class="dropdown-item" href="{%   url 'admin:index' %}">Admin panel</a></li>
+                                {% endif %}
+                                <li class="dropdown-footer gap-2">
+                                    <form action="{% url 'logout' %}" method="POST" class="w-full">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-error btn-soft btn-block">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     {% else %}
                         <!-- Login button positioned in the top-right -->
                         <a href="{% url 'login' %}" class="btn">
