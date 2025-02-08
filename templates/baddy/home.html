@@ -4,7 +4,7 @@
 
 {% block container_content %}
     <div class="flex flex-col space-y-16">
-        {% with title="Welcome "|add:user.username|title subtitle="Select a dashboard below..." %}
+        {% with title="Welcome "|add:user.get_name|title subtitle="Select a dashboard below..." %}
             {% include "components/main_page_title.html" %}
         {% endwith %}
 

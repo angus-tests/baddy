@@ -36,3 +36,10 @@ class CustomUser(AbstractUser):
         :return:
         """
         return self.groups.filter(name="non-technical").exists()
+
+    def get_name(self) -> str:
+        """
+        Get the name of the user
+        """
+        # If user has firstname, otherwise use username
+        return self.first_name if self.first_name else self.username
