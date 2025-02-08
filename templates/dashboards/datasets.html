@@ -28,102 +28,55 @@
                 </tr>
                 </thead>
                 <tbody>
-                    
-                    <!-- row 1 -->
-                    <tr>
-                        <td>
-                            adsb2343467834_adbsad234
-                        </td>
-                        <td class="text-nowrap">March 2, 2024</td>
-                        <td>
-                            <a href="#" class="link link-primary">dataset_1.csv</a>
-                        </td>
-                        <td>123</td>
-                        <td>
-                            <span class="badge badge-success text-xs">v2</span>
-                        </td>
-                        <td>
-                            062
-                        </td>
-                    </tr>
-                
-                    <!-- row 2 -->
-                    <tr>
-                        <td>
-                            adsb2343467834_adbsad234
-                        </td>
-                        <td class="text-nowrap">March 2, 2024</td>
-                        <td>
-                            <a href="#" class="link link-primary">dataset_1.csv</a>
-                        </td>
-                        <td>123</td>
-                        <td>
-                            <span class="badge badge-success text-xs">v2</span>
-                        </td>
-                        <td>
-                            062
-                        </td>
-                    </tr>
-                
-                    <!-- row 3 -->
-                    <tr>
-                        <td>
-                            adsb2343467834_adbsad234
-                        </td>
-                        <td class="text-nowrap">March 2, 2024</td>
-                        <td>
-                            <a href="#" class="link link-primary">dataset_1.csv</a>
-                        </td>
-                        <td>123</td>
-                        <td>
-                            <span class="badge badge-success text-xs">v2</span>
-                        </td>
-                        <td>
-                            062
-                        </td>
-                    </tr>
-                
-                    <!-- row 4 -->
-                    <tr>
-                        <td>
-                            adsb2343467834_adbsad234
-                        </td>
-                        <td class="text-nowrap">March 2, 2024</td>
-                        <td>
-                            <a href="#" class="link link-primary">dataset_1.csv</a>
-                        </td>
-                        <td>123</td>
-                        <td>
-                            <span class="badge badge-success text-xs">v2</span>
-                        </td>
-                        <td>
-                            062
-                        </td>
-                    </tr>
+
+                    {% for dataset in dataset_page %}
+                        <tr>
+                            <td>
+                                {{ dataset.dataset_id }}
+                            </td>
+                            <td class="text-nowrap">{{ dataset.published_at|date:"d M Y" }}</td>
+                            <td>
+                                <a href="#" class="link link-primary">{{ dataset.filename }}</a>
+                            </td>
+                            <td>{{ dataset.period|date:"d/m/y" }}</td>
+                            <td>
+                                {% if dataset.schema_version == 'v2' %}
+                                    <span class="badge badge-success badge-soft text-xs">{{ dataset.schema_version }}</span>
+                                {% else %}
+                                    <span class="badge badge-warning badge-soft text-xs">{{ dataset.schema_version }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ dataset.survey_id }}
+                            </td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
 
-        <div class="flex flex-wrap items-center justify-between gap-2 py-4 pt-6">
-            <div class="me-2 block max-w-sm text-sm font-normal text-gray-500 sm:mb-0">
-                Showing
-                <span class="font-semibold text-gray-900">1-4</span>
+        <div class="flex flex-wrap items-center justify-between gap-2 py-4 mt-8 py-5 border-t border-base-content/50 ">
+            <div class="me-2 block max-w-sm text-sm font-normal text-base-content/70 sm:mb-0">
+                Page
+                <span class="font-semibold text-gray-900 dark:text-gray-200">{{ dataset_page.number }}</span>
                 of
-                <span class="font-semibold">20</span>
-                datasets
+                <span class="font-semibold">{{  dataset_page.paginator.num_pages }}</span>
+                pages
             </div>
-            <nav class="join">
-                <button type="button" class="btn btn-soft btn-square join-item" aria-label="previous button">
-                    <span class="icon-[tabler--chevron-left] size-5 rtl:rotate-180"></span>
-                </button>
-                <button type="button" class="btn btn-soft join-item btn-square aria-[current='page']:text-bg-primary">1</button>
-                <button type="button" class="btn btn-soft join-item btn-square aria-[current='page']:text-bg-primary" aria-current="page" >
-                    2
-                </button>
-                <button type="button" class="btn btn-soft join-item btn-square aria-[current='page']:text-bg-primary">3</button>
-                <button type="button" class="btn btn-soft btn-square join-item" aria-label="next button">
-                    <span class="icon-[tabler--chevron-right] size-5 rtl:rotate-180"></span>
-                </button>
+            <div class="me-2 block max-w-sm text-sm font-normal text-base-content/70 sm:mb-0">
+                Showing
+                <span class="font-semibold text-gray-900 dark:text-gray-200">{{ dataset_page.start_index }} - {{ dataset_page.end_index }}</span>
+                of
+                <span class="font-semibold ">{{ dataset_page.paginator.count }}</span>
+                results
+            </div>
+            <nav class="flex items-center gap-x-1">
+                {% if dataset_page.has_previous %}
+                    <a href="?page={{ dataset_page.previous_page_number }}" class="btn btn-soft">Previous</a>
+                {% endif %}
+                {% if dataset_page.has_next %}
+                    <a href="?page={{ dataset_page.next_page_number }}" class="btn btn-soft">Next</a>
+                {% endif %}
             </nav>
         </div>
     </div>

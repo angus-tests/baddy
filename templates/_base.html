@@ -3,7 +3,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html class="h-full" lang="en">
+<html  lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -25,37 +25,50 @@
     {% endcompress %}
 </head>
 
-<body class="bg-sand flex flex-col min-h-screen h-full">
-    <nav>
-    <div class="bg-rose-500 p-5 relative">
-        <div class="max-w-48 mx-auto">
-            <a href="{% url 'index' %}">
-                <img alt="Logo for Baddy" src="{% static 'images/logo.svg' %}">
-            </a>
+<body class="bg-sand dark:bg-sand-dark flex flex-col min-h-screen h-full">
+    <nav data-theme="light">
+        <div class="bg-rose-500 p-5 relative">
+            <div class="max-w-48 mx-auto">
+                <a href="{% url 'index' %}">
+                    <img alt="Logo for Baddy" src="{% static 'images/logo.svg' %}">
+                </a>
+            </div>
+            <div class="absolute top-0 right-0 p-5">
+                <div class="flex flex-row items-center gap-3">
+                    <!-- Dark Mode Toggle Button -->
+                    <button id="dark-mode-toggle" type="button" class="btn btn-square" aria-label="Dark mode toggle button">
+                        <!-- Sun icon (light mode) -->
+                        <span class="icon-[tabler--sun-filled] hidden dark:block"></span>
+                        <!-- Moon icon (dark mode) -->
+                        <span class="icon-[tabler--moon-filled] dark:hidden"></span>
+                    </button>
+
+                    {% if user.is_authenticated %}
+                        <!-- Logout button positioned in the top-right -->
+                        <form action="{% url 'logout' %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">
+                                Logout
+                            </button>
+                        </form>
+                    {% else %}
+                        <!-- Login button positioned in the top-right -->
+                        <a href="{% url 'login' %}" class="btn">
+                            Login
+                        </a>
+                    {% endif %}
+                    
+                </div>
+            </div>
         </div>
-        {% if user.is_authenticated %}
-        <!-- Logout button positioned in the top-right -->
-        <form action="{% url 'logout' %}" method="POST" class="absolute top-1/2 right-5 -translate-y-1/2">
-            {% csrf_token %}
-            <button type="submit" class="bg-white text-rose-600 px-3 py-1.5 rounded-md text-sm font-semibold shadow-sm hover:bg-gray-100">
-                Logout
-            </button>
-        </form>
-        {% else %}
-            <!-- Login button positioned in the top-right -->
-            <a href="{% url 'login' %}" class="absolute top-1/2 right-5 -translate-y-1/2 bg-white text-rose-600 px-3 py-1.5 rounded-md text-sm font-semibold shadow-sm hover:bg-gray-100">
-                Login
-            </a>
-        {% endif %}
-    </div>
-    <div class="bg-rose-200 p-2 overflow-hidden whitespace-nowrap relative">
-        <div id="marquee" class="text-center">
-            <p class="text-rose-900 text-sm">
-                Business Analytics & Data Dashboard for You - by <span class="font-bold">DFTS</span>
-            </p>
+        <div class="bg-rose-200 p-2 overflow-hidden whitespace-nowrap relative">
+            <div id="marquee" class="text-center">
+                <p class="text-rose-900 text-sm">
+                    Business Analytics & Data Dashboard for You - by <span class="font-bold">DFTS</span>
+                </p>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
 
     <div class="container mx-auto flex-grow h-full">
@@ -68,7 +81,7 @@
             <p class="text-center"><span class="text-sm text-rose-900 text-center">© <span id="year"></span> <strong>Baddy</strong> | Designed by DFTS</span></p>
         </div>
     </footer>
-    
+
     <script>
         // Dynamically set the current year in the footer
         document.getElementById('year').textContent = new Date().getFullYear();
@@ -76,6 +89,7 @@
 
     {% compress js %}
     <script src="{% static 'src/js/flyonui.js' %}"></script>
+    <script src="{% static 'src/js/dark.js' %}" defer></script>
     {% endcompress %}
 
 </body>

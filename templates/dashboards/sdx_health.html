@@ -5,49 +5,15 @@
 
 {% block dashboard %}
     <div class="flex flex-col space-y-10">
-        <div class="flex flex-col space-y-8">
-            <h2 class="text-base-content text-3xl">System Overview</h2>
-            <div class="stats">
-                <div class="stat place-items-center">
-                    <div class="stat-title">Total Surveys</div>
-                    <div class="stat-value">1,789</div>
-                    <div class="stat-desc">Today</div>
-                </div>
-    
-                <div class="stat place-items-center">
-                    <div class="stat-title">Active Surveys</div>
-                    <div class="stat-value">465</div>
-                    <div class="stat-desc">(last 5 minutes)</div>
-                </div>
-                
-                <div class="stat place-items-center">
-                    <div class="stat-title ">Successful Surveys</div>
-                    <div class="stat-value text-success">1,690</div>
-                    <div class="stat-desc">Today</div>
-                </div>
-                
-                <div class="stat place-items-center">
-                    <div class="stat-title ">Failed Surveys</div>
-                    <div class="stat-value text-error">99</div>
-                    <div class="stat-desc">Today</div>
-                </div>
-                
-            </div>
-    
-        </div>
     
         <div class="flex flex-col space-y-8">
             <h2 class="text-base-content text-3xl">Apps</h2>
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4 items-center">
-                <!-- SDX Testy card -->
-                {% with service_name="SDX-Testy" version="0.4.5" is_healthy=True %}
-                    {% include "dashboards/components/service_card.html" %}
-                {% endwith %}
-            
-                <!-- SDX Paul card -->
-                {% with service_name="SDX-Paul" version="6.6.6" is_healthy=False %}
-                    {% include "dashboards/components/service_card.html" %}
-                {% endwith %}
+                {% for app in apps %}
+                    {% with service_name=app.name version=app.version is_healthy=app.is_healthy %}
+                        {% include "dashboards/components/service_card.html" %}
+                    {% endwith %}
+                {% endfor %}
             </div>
         </div>
     </div>

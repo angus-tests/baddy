@@ -1,18 +1,18 @@
 
 from abc import ABC, abstractmethod
 
-from dashboards.models.dataset import Dataset
+from dashboards.models.sds.dataset import Dataset
 
 
 class DatasetRepositoryInterface(ABC):
     """
     Interface that defines the methods that must be implemented
-    by the dataset repository.
+    by the sds repository.
     """
     @abstractmethod
     def get_by_id(self, dataset_id: str) -> Dataset:
         """
-        Get a dataset by its ID.
+        Get a sds by its ID.
         :param dataset_id:
         :return: The Dataset object.
         """
