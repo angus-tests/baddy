@@ -13,7 +13,7 @@ class SDXAppFactory:
         """Creates a SDXApp from a dictionary."""
         return SDXApp(
             slug=data["slug"],
-            app_name=data["app_name"],
+            name=data["name"],
             version=data["version"],
             status=data["status"],
             description=data.get("description", None),

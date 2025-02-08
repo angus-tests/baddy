@@ -8,8 +8,8 @@ class DatasetService(Service):
     Service class for interacting with datasets
     """
 
-    def __init__(self, repository: DatasetRepositoryInterface):
-        self.repository = repository
+    def __init__(self, dataset_repository: DatasetRepositoryInterface):
+        self.dataset_repository = dataset_repository
 
     def get_dataset(self, dataset_id: str):
         """
@@ -17,11 +17,11 @@ class DatasetService(Service):
         :param dataset_id:
         :return: Dataset object.
         """
-        return self.repository.get_by_id(dataset_id)
+        return self.dataset_repository.get_by_id(dataset_id)
 
     def get_all_datasets(self) -> list[Dataset]:
         """
         Get all datasets.
         :return: A list of Dataset objects.
         """
-        return self.repository.get_all()
+        return self.dataset_repository.get_all()

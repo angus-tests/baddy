@@ -17,21 +17,21 @@ class FakeSDXAppRepository(SDXAppRepositoryInterface):
         self.app_data = [
             {
                 "slug": "sdx-testy",
-                "app_name": "SDX-Testy",
+                "name": "SDX-Testy",
                 "version": "0.3.2",
                 "status": "healthy",
                 "description": "A test app for the SDX system"
             },
             {
                 "slug": "sdx-paul",
-                "app_name": "SDX-Paul",
+                "name": "SDX-Paul",
                 "version": "6.6.6",
                 "status": "unhealthy",
                 "description": "A performance testing app for the SDX system"
             },
             {
                 "slug": "sdx-survey",
-                "app_name": "SDX-Survey",
+                "name": "SDX-Survey",
                 "version": "0.9.10",
                 "status": "healthy",
                 "description": "App for controlling surveys in the SDX system"

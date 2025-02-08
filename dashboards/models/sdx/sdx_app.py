@@ -19,10 +19,13 @@ class SDXApp:
     in the SDX system
     """
     slug: str
-    app_name: str
+    name: str
     version: str
     status: AppStatus
     description: Optional[str] = None
 
+    def is_healthy(self) -> bool:
+        return self.status == AppStatus.HEALTHY
+
     def __str__(self):
-        return self.app_name
+        return self.name

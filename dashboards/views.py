@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from dashboards.access_control import has_dashboard_access
-from dashboards.dependencies import get_dataset_service
+from dashboards.dependencies import get_dataset_service, get_health_service
 
 
 @login_required
@@ -27,7 +27,14 @@ def dataset_dashboard(request):
 @login_required
 @user_passes_test(lambda u: has_dashboard_access(u, "sdx_health_dashboard"))
 def sdx_health_dashboard(request):
-    return render(request, "dashboards/sdx_health.html")
+
+    # Load the health service
+    health_service = get_health_service()
+
+    # Load all the apps
+    apps = health_service.get_all_apps()
+
+    return render(request, "dashboards/sdx_health.html", {"apps": apps})
 
 
 @login_required
