@@ -33,6 +33,12 @@ npm run watch
 python manage.py migrate
 python manage.py runserver
 ```
+### Seeding groups
+
+To seed the groups, run the following command:
+```bash
+python manage.py seed_groups
+```
 
 ### Create a superuser
 
