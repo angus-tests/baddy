@@ -16,15 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views as auth_views
 
 from baddy import views
 
 
 urlpatterns = [
     path('', views.index, name='index'),
-
-    path('login/', views.login_page, name='login'),
 
     path('403/', views.four_three, name='403'),
 
@@ -33,11 +30,5 @@ urlpatterns = [
     path('home/', views.home, name='home'),
 
     path("dashboards/", include("dashboards.urls")),  # Include dashboard-specific routes
-
-    path('logout/', views.logout_view, name='logout'),
-
-    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path("", include("accounts.urls")),  # Include account routes
 ]

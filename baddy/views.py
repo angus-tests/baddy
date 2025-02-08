@@ -20,23 +20,6 @@ def index(request):
     return render(request, 'baddy/index.html')
 
 
-def login_page(request):
-    if request.user.is_authenticated:
-        return redirect('home')  # Redirect if already logged in
-
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            # Get the authenticated user
-            user = form.get_user()
-            login(request, user)  # Log the user in
-            return redirect('home')  # Redirect after successful login
-    else:
-        form = AuthenticationForm()
-
-    return render(request, 'registration/login.html', {'form': form})
-
-
 def four_three(request: HttpRequest) -> HttpResponse:
     """
     Render the 403 page.
@@ -48,11 +31,4 @@ def four_three(request: HttpRequest) -> HttpResponse:
 @login_required
 def home(request):
     return render(request, 'baddy/home.html')
-
-
-@require_POST
-def logout_view(request):
-    """Logs out the user and redirects to the index page."""
-    logout(request)
-    return redirect('index')
 

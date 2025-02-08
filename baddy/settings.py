@@ -39,7 +39,6 @@ STATIC_URL = "static/"
 
 STATIC_ROOT = BASE_DIR / "static"
 
-
 # COMPRESSOR SETTINGS
 
 COMPRESS_ROOT = BASE_DIR / 'static'
@@ -67,7 +66,11 @@ INSTALLED_APPS = [
     "compressor",
     "baddy",
     "dashboards",
+    "accounts",
 ]
+
+# User model
+AUTH_USER_MODEL = "accounts.CustomUser"
 
 MARKDOWNIFY = {
     "default": {
