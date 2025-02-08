@@ -2,8 +2,8 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import User
 
 DASHBOARD_PERMISSIONS = {
-    "dataset_dashboard": "dfts_team",
-    "sdx_health_dashboard": "sdx_team",
+    "dataset_dashboard": "sds",
+    "sdx_health_dashboard": "sdx",
     "secret_dashboard": "superusers",
 }
 
