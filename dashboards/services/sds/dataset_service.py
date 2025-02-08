@@ -1,6 +1,6 @@
-from dashboards.interfaces.dataset.dataset_repository_interface import DatasetRepositoryInterface
+from dashboards.interfaces.sds.dataset_repository_interface import DatasetRepositoryInterface
 from dashboards.interfaces.service import Service
-from dashboards.models.dataset.dataset import Dataset
+from dashboards.models.sds.dataset import Dataset
 
 
 class DatasetService(Service):
@@ -13,7 +13,7 @@ class DatasetService(Service):
 
     def get_dataset(self, dataset_id: str):
         """
-        Get a dataset by its ID.
+        Get a sds by its ID.
         :param dataset_id:
         :return: Dataset object.
         """

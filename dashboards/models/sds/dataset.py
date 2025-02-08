@@ -6,7 +6,7 @@ from typing import Optional
 @dataclass
 class Dataset:
     """
-    A class that represents a dataset
+    A class that represents a sds
     """
     dataset_id: str
     filename: str

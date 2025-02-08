@@ -9,7 +9,7 @@ from dashboards.dependencies import get_dataset_service
 @login_required
 @user_passes_test(lambda u: has_dashboard_access(u, "dataset_dashboard"))
 def dataset_dashboard(request):
-    # Load the dataset service
+    # Load the sds service
     dataset_service = get_dataset_service()
 
     # Fetch all the datasets
