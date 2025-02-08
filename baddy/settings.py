@@ -52,6 +52,8 @@ STATICFILES_FINDERS = [
     'compressor.finders.CompressorFinder'
 ]
 
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 # Application definition
 
 INSTALLED_APPS = [

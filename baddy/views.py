@@ -34,7 +34,7 @@ def login_page(request):
     else:
         form = AuthenticationForm()
 
-    return render(request, 'baddy/login.html', {'form': form})
+    return render(request, 'registration/login.html', {'form': form})
 
 
 def four_three(request: HttpRequest) -> HttpResponse:
