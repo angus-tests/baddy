@@ -78,7 +78,7 @@
     
                                 <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
                                 {% if user.is_staff %}
-                                    <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin panel</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'admin:index' %}" target="_blank">Admin panel</a></li>
                                 {% endif %}
                                 <li class="dropdown-footer gap-2">
                                     <form action="{% url 'logout' %}" method="POST" class="w-full">
