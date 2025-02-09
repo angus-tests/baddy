@@ -8,7 +8,7 @@
         id="{{ id }}"
         name="{{ id }}"
         value="{{ form_field.value | default_if_none:'' }}"
-        required
+        {% if required %}required{% endif %}
     />
     {% if form_field.errors %}
         {% for error in form_field.errors %}
