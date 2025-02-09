@@ -9,8 +9,53 @@
         {% endwith %}
         </div>
     
-        <div class="w-full bg-base-100 shadow rounded-lg p-8">
-            Form
+        <div class="w-full bg-base-100 shadow rounded-lg p-8 flex flex-col gap-y-10">
+            <div>
+                <h3 class="font-semibold">Personal Info</h3>
+                <p class="mt-1 text-sm text-base-content/80">View and update your personal information</p>
+                <div class="mt-8 bg-base-200 rounded-lg p-8 w-full">
+                    <form  method="POST" class="space-y-4 max-w-lg">
+                        <div class="flex flex-col space-y-2">
+                            <label for="current_password" class="text-sm">Current password</label>
+                            <input type="password" name="current_password" id="current_password" class="input input-bordered" required>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <label for="new_password" class="text-sm">New password</label>
+                            <input type="password" name="new_password" id="new_password" class="input input-bordered" required>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <label for="confirm_password" class="text-sm">Confirm new password</label>
+                            <input type="password" name="confirm_password" id="confirm_password" class="input input-bordered" required>
+                        </div>
+                        <div class="pt-5">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-semibold">Password</h3>
+                <p class="mt-1 text-sm text-base-content/80">Update your current account password</p>
+                <div class="mt-8 bg-base-200 rounded-lg p-8 w-full">
+                    <form  method="POST" class="space-y-4 max-w-lg">
+                        <div class="flex flex-col space-y-2">
+                            <label for="current_password" class="text-sm">Current password</label>
+                            <input type="password" name="current_password" id="current_password" class="input input-bordered" required>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <label for="new_password" class="text-sm">New password</label>
+                            <input type="password" name="new_password" id="new_password" class="input input-bordered" required>
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <label for="confirm_password" class="text-sm">Confirm new password</label>
+                            <input type="password" name="confirm_password" id="confirm_password" class="input input-bordered" required>
+                        </div>
+                        <div class="pt-5">
+                            <button type="submit" class="btn btn-primary">Update password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     
