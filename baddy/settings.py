@@ -39,7 +39,6 @@ STATIC_URL = "static/"
 
 STATIC_ROOT = BASE_DIR / "static"
 
-
 # COMPRESSOR SETTINGS
 
 COMPRESS_ROOT = BASE_DIR / 'static'
@@ -51,6 +50,10 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder'
 ]
+
+# Email settings (Currently set to console backend)
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
 # Application definition
 
@@ -64,7 +67,11 @@ INSTALLED_APPS = [
     "compressor",
     "baddy",
     "dashboards",
+    "accounts",
 ]
+
+# User model
+AUTH_USER_MODEL = "accounts.CustomUser"
 
 MARKDOWNIFY = {
     "default": {
@@ -155,7 +162,11 @@ if DB_ENGINE == 'postgres':
 #     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 # ]
 AUTH_PASSWORD_VALIDATORS = []
-LOGOUT_REDIRECT_URL = ''
+
+# LOGIN / LOGOUT SETTINGS
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

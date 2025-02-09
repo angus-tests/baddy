@@ -1,12 +1,9 @@
 {% extends "_container.html" %}
 
 {% block container_content %}
-    <div class="py-12 flex flex-col space-y-16">
+    <div class="flex flex-col space-y-16">
         <div class="flex flex-col space-y-4">
-            <div>
-                <!-- Breadcrumbs Section -->
-                <a href="{% url 'index' %}" class="btn btn-secondary btn-soft"><span class="icon-[tabler--arrow-left] size-6"></span> Home</a>
-            </div>
+            {% include "components/home_button.html" %}
 
             <!-- Dashboard Title and Description Section -->
             <div class="mb-8">

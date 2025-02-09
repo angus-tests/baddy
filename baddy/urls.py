@@ -23,8 +23,6 @@ from baddy import views
 urlpatterns = [
     path('', views.index, name='index'),
 
-    path('login/', views.login_page, name='login'),
-
     path('403/', views.four_three, name='403'),
 
     path("admin/", admin.site.urls),
@@ -32,6 +30,5 @@ urlpatterns = [
     path('home/', views.home, name='home'),
 
     path("dashboards/", include("dashboards.urls")),  # Include dashboard-specific routes
-
-    path('logout/', views.logout_view, name='logout'),
+    path("", include("accounts.urls")),  # Include account routes
 ]

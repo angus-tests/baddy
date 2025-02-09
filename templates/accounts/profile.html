@@ -1,0 +1,41 @@
+{% extends "_container.html" %}
+
+{% block container_content %}
+    <div class="flex flex-col gap-y-10">
+        <div class="flex flex-col space-y-4">
+            {% include "components/home_button.html" %}
+            {% with title="Your profile" subtitle="Here you can update your account details" %}
+                {% include "components/main_page_title.html" %}
+            {% endwith %}
+        </div>
+
+        <div class="w-full bg-base-100 shadow rounded-lg p-8 flex flex-col gap-y-10">
+
+            <div>
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-2xl font-semibold text-base-content">Personal information</h3>
+                    <p class="mt-1 max-w-full text-base-content/80">View and update your personal information</p>
+                </div>
+                <div class="mt-6 border-t border-base-content/25">
+                    <dl class="divide-y divide-base-content/25">
+                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 text-base">
+                            <dt class="font-medium text-base-content">Username</dt>
+                            <dd class="mt-1  text-base-content/80 sm:col-span-2 sm:mt-0">{{ user.username }}</dd>
+                        </div>
+                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 text-base">
+                            <dt class="font-medium text-base-content">Email</dt>
+                            <dd class="mt-1  text-base-content/80 sm:col-span-2 sm:mt-0">{{ user.email }}</dd>
+                        </div>
+                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 text-base">
+                            <dt class="font-medium text-base-content">Password</dt>
+                            <dd class="mt-1  text-base-content/80 sm:col-span-2 sm:mt-0">
+                                <a href="{% url 'password_change' %}" class="btn">Change</a>
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock container_content %}

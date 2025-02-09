@@ -20,14 +20,14 @@
     <title>Baddy</title>
 
     {% compress css %}
-    <link rel="stylesheet"
-        href="{% static 'src/output.css' %}">
+        <link rel="stylesheet"
+              href="{% static 'src/output.css' %}">
     {% endcompress %}
 </head>
 
 <body class="bg-sand dark:bg-sand-dark flex flex-col min-h-screen h-full">
     <nav data-theme="light">
-        <div class="bg-rose-500 p-5 relative">
+        <div class="bg-primary p-5 relative">
             <div class="max-w-48 mx-auto">
                 <a href="{% url 'index' %}">
                     <img alt="Logo for Baddy" src="{% static 'images/logo.svg' %}">
@@ -42,22 +42,54 @@
                         <!-- Moon icon (dark mode) -->
                         <span class="icon-[tabler--moon-filled] dark:hidden"></span>
                     </button>
-
+    
                     {% if user.is_authenticated %}
-                        <!-- Logout button positioned in the top-right -->
-                        <form action="{% url 'logout' %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" class="btn">
-                                Logout
+    
+                        <div class="dropdown relative inline-flex rtl:[--placement:bottom-end]">
+                            <button id="dropdown-footer" type="button" class="dropdown-toggle btn" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                Account
+                                <span class="icon-[tabler--chevron-down] dropdown-open:rotate-180 size-4"></span>
                             </button>
-                        </form>
+                            <ul class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-footer">
+                                <li class="dropdown-header gap-3 flex items-center">
+                                    <div class="avatar placeholder">
+                                        <div class="bg-info/20 text-info w-10 h-10 flex items-center justify-center rounded-full">
+                                            <span class="text-md uppercase">
+                                                {{ user.get_name|slice:":1" }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <h6 class="text-base-content text-base font-semibold truncate max-w-[8rem]">
+                                            {{ user.get_name|title }}
+                                        </h6>
+                                        <small class="text-base-content/50 text-sm font-normal truncate block max-w-[8rem]">
+                                            {{ user.email }}
+                                        </small>
+                                    </div>
+                                </li>
+    
+                                <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
+                                {% if user.is_staff %}
+                                    <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin panel</a></li>
+                                {% endif %}
+                                <li class="dropdown-footer gap-2">
+                                    <form action="{% url 'logout' %}" method="POST" class="w-full">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-error btn-soft btn-block">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     {% else %}
                         <!-- Login button positioned in the top-right -->
                         <a href="{% url 'login' %}" class="btn">
                             Login
                         </a>
                     {% endif %}
-                    
+    
                 </div>
             </div>
         </div>
@@ -75,11 +107,11 @@
         {% block content %}
         {% endblock content %}
     </div>
-
-    <footer class="bg-rose-200 text-white">
-        <div class="w-full mx-auto max-w-screen-xl p-4 flex justify-center flex-row items-center">
-            <p class="text-center"><span class="text-sm text-rose-900 text-center">© <span id="year"></span> <strong>Baddy</strong> | Designed by DFTS</span></p>
-        </div>
+    
+    <footer class="footer footer-center bg-rose-200 px-6 py-4">
+      <aside>
+        <p class="text-center"><span class="text-sm text-center text-rose-900">© <span id="year"></span> <strong>Baddy</strong> | Designed by DFTS</span></p>
+      </aside>
     </footer>
 
     <script>
@@ -88,8 +120,8 @@
     </script>
 
     {% compress js %}
-    <script src="{% static 'src/js/flyonui.js' %}"></script>
-    <script src="{% static 'src/js/dark.js' %}" defer></script>
+        <script src="{% static 'src/js/flyonui.js' %}"></script>
+        <script src="{% static 'src/js/dark.js' %}" defer></script>
     {% endcompress %}
 
 </body>

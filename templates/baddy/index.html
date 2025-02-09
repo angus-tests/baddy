@@ -1,12 +1,10 @@
-{% extends "_base.html" %}
-{% load static %}
+{% extends "_container.html" %}
 
-{% block content %}
-    <div class="py-20">
-        <div class="text-left">
-            <h1 class="text-base-content mb-4 text-4xl font-extrabold leading-none tracking-tight  md:text-5xl lg:text-6xl ">Welcome to Baddy!</h1>
-            <p class="text-base-content/80 mb-6 text-lg font-normal lg:text-xl ">Baddy is a dashboard for anyone to see what's going on in DFTS</p>
-            <a href="{% url 'login' %}" class="btn btn-lg btn-gradient btn-primary">Login</a>
-        </div>
+{% block container_content %}
+    <div class="text-left">
+        {% with title="Welcome to Baddy!" subtitle="Baddy is a dashboard for anyone to see what's going on in DFTS." %}
+            {% include "components/main_page_title.html" %}
+        {% endwith %}
+        <a href="{% url 'login' %}" class="btn btn-lg btn-gradient btn-primary">Login</a>
     </div>
-{% endblock content %}
+{% endblock container_content %}
