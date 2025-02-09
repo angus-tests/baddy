@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+
+{% block content %}
+    <div class="px-6 py-24 sm:py-32 lg:px-8">
+        <div class="text-center">
+            <div class="max-w-96 mx-auto py-10">
+                <img alt="Error Image" src="{% block image %}{% endblock %}">
+            </div>
+            <p class="badge badge-primary badge-lg badge-soft">
+                {% block code %}{% endblock %}
+            </p>
+            <h1 class="mt-4 text-balance text-5xl font-semibold tracking-tight sm:text-7xl truncate mx-auto">
+                {% block title %}{% endblock %}
+            </h1>
+            <p class="mt-6 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8 truncate mx-auto">
+                {% block subtitle %}{% endblock %}
+            </p>
+            <div class="mt-10 flex items-center justify-center gap-x-6">
+                <a href="{% url 'index' %}" class="btn btn-primary">
+                    Go back home
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
