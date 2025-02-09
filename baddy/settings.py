@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+import tomllib
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -28,6 +29,25 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-1nze18c1fv*tq2%0#z%bo4uagw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 #DEBUG = False
+
+# VERSION FILE (pyproject.toml)
+POETRY_TOML = os.path.join(BASE_DIR, "pyproject.toml")
+
+
+def get_version():
+    """
+    We use the version from the pyproject.toml file
+    """
+    try:
+        with open(POETRY_TOML, "rb") as f:
+            data = tomllib.load(f)
+            return data["tool"]["poetry"]["version"]
+    except (FileNotFoundError, KeyError):
+        return "N/A"
+
+
+VERSION = get_version()
+
 
 # Get the ALLOWED_HOSTS environment variable from the environment or .env file
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
@@ -110,6 +130,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "baddy.context_processors.project_version"
             ],
         },
     },

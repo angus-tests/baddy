@@ -49,9 +49,9 @@
                         <!-- Moon icon (dark mode) -->
                         <span class="icon-[tabler--moon-filled] dark:hidden"></span>
                     </button>
-    
+
                     {% if user.is_authenticated %}
-    
+
                         <div class="dropdown relative inline-flex rtl:[--placement:bottom-end]">
                             <button id="dropdown-footer" type="button" class="dropdown-toggle btn" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                 Account
@@ -75,7 +75,7 @@
                                         </small>
                                     </div>
                                 </li>
-    
+
                                 <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
                                 {% if user.is_staff %}
                                     <li><a class="dropdown-item" href="{% url 'admin:index' %}" target="_blank">Admin panel</a></li>
@@ -96,7 +96,7 @@
                             Login
                         </a>
                     {% endif %}
-    
+
                 </div>
         </div>
     </nav>
@@ -110,14 +110,19 @@
         {% block content %}
         {% endblock content %}
     </div>
-    
-    <footer class="bg-rose-200 dark:bg-rose-500/10 text-center footer footer-center p-8">
-        <div>
-            <p class="text-rose-900 dark:text-rose-200/90">
+
+    <footer class="bg-rose-200 dark:bg-rose-500/10 footer p-8">
+        <div class="container max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto flex flex-col sm:flex-row items-center justify-between w-full">
+            <div>
+                <p class="text-rose-900 dark:text-rose-200/90">
             © <span id="year"></span> <strong>Baddy</strong> | Designed by DFTS</span>
-        </p>
+            </p>
+            </div>
+            <div>
+                <p class="text-rose-900 dark:text-rose-200/90">Version: <span class="ml-2 font-mono">{{ PROJECT_VERSION }}</span></p>
+            </div>
         </div>
-        
+
     </footer>
 
     <script>
