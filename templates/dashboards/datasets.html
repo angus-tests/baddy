@@ -5,9 +5,10 @@
 
 {% block dashboard %}
     <div class="w-full p-10 bg-base-100 rounded-lg shadow-md">
-        <div class="flex flex-col flex-wrap gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex flex-col flex-wrap gap-3 sm:flex-row sm:items-end sm:justify-between">
             {# Search #}
-            <div class="flex flex-row gap-x-2">
+            <div class="flex flex-row gap-x-2 items-center">
+                
                 <label class="input-group max-w-xs">
                     <span class="input-group-text">
                         <span class="icon-[tabler--search] size-6"></span>
@@ -17,7 +18,14 @@
 
                 <button class="btn">Search</button>
             </div>
-
+            
+            {# Sort #}
+            <div class="w-96">
+                <label class="label label-text" for="sort-by">Sort by</label>
+                <select class="select" id="sort-by">
+                    <option>Published at</option>
+                </select>
+            </div>
         </div>
 
         <div class="mt-8 overflow-x-auto">
