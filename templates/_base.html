@@ -26,15 +26,22 @@
 </head>
 
 <body class="bg-sand dark:bg-sand-dark flex flex-col min-h-screen h-full">
-    <nav data-theme="light">
-        <div class="bg-primary p-5 relative">
-            <div class="max-w-48 mx-auto">
+    {#  Navbar  #}
+    <nav class="navbar p-5 bg-primary flex w-full items-center justify-between gap-2 shadow" data-theme="light">
+        <div class="navbar-start ">
+            <a href="{% url 'index' %}" class="md:hidden">
+                <img alt="Logo for Baddy" src="{% static 'images/logo.svg' %}" class="block h-6 w-auto">
+            </a>
+        </div>
+        <div class="navbar-center relative">
+            <div class="max-w-48 mx-auto hidden md:block">
                 <a href="{% url 'index' %}">
-                    <img alt="Logo for Baddy" src="{% static 'images/logo.svg' %}">
-                </a>
+                <img alt="Logo for Baddy" src="{% static 'images/logo.svg' %}" class="block h-9 w-auto">
+            </a>
             </div>
-            <div class="absolute top-0 right-0 p-5">
-                <div class="flex flex-row items-center gap-3">
+        </div>
+        <div class="navbar-end items-center gap-4">
+            <div class="flex flex-row items-center gap-3">
                     <!-- Dark Mode Toggle Button -->
                     <button id="dark-mode-toggle" type="button" class="btn btn-square" aria-label="Dark mode toggle button">
                         <!-- Sun icon (light mode) -->
@@ -91,16 +98,12 @@
                     {% endif %}
     
                 </div>
-            </div>
-        </div>
-        <div class="bg-rose-200 p-2 overflow-hidden whitespace-nowrap relative">
-            <div id="marquee" class="text-center">
-                <p class="text-rose-900 text-sm">
-                    Business Analytics & Data Dashboard for You - by <span class="font-bold">DFTS</span>
-                </p>
-            </div>
         </div>
     </nav>
+    {#  Banner  #}
+    <div class="p-2 bg-rose-200 dark:bg-rose-500/10 text-center">
+        <p class="text-rose-900 dark:text-rose-200/90">Business Analytics & Data Dashboard for you</p>
+    </div>
 
 
     <div class="container mx-auto flex-grow h-full">
@@ -108,10 +111,13 @@
         {% endblock content %}
     </div>
     
-    <footer class="footer footer-center bg-rose-200 px-6 py-4">
-      <aside>
-        <p class="text-center"><span class="text-sm text-center text-rose-900">© <span id="year"></span> <strong>Baddy</strong> | Designed by DFTS</span></p>
-      </aside>
+    <footer class="bg-rose-200 dark:bg-rose-500/10 text-center footer footer-center p-8">
+        <div>
+            <p class="text-rose-900 dark:text-rose-200/90">
+            © <span id="year"></span> <strong>Baddy</strong> | Designed by DFTS</span>
+        </p>
+        </div>
+        
     </footer>
 
     <script>
