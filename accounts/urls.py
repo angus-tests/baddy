@@ -26,7 +26,7 @@ urlpatterns = [
     path("password_reset/", redirect_authenticated_user(auth_views.PasswordResetView.as_view()), name="password_reset"),
 
     # Other auth routes remain unchanged
-    path("password_change/", auth_views.PasswordChangeView.as_view(success_url="/profile"), name="password_change"),
+    path("password_change/", auth_views.PasswordChangeView.as_view(), name="password_change"),
     path("password_change/done/", auth_views.PasswordChangeDoneView.as_view(), name="password_change_done"),
 
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
