@@ -51,23 +51,24 @@
                                 <span class="icon-[tabler--chevron-down] dropdown-open:rotate-180 size-4"></span>
                             </button>
                             <ul class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-footer">
-                                <li class="dropdown-header gap-3">
-                                    <div class="avatar placeholder">
-                                        <div class="bg-info/20 text-info w-10 rounded-full">
-                                            <span class="text-md uppercase">
-                                                {{ user.get_name|slice:":1" }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h6 class="text-base-content text-base font-semibold">
-                                            {{ user.get_name|title }}
-                                        </h6>
-                                        <small class="text-base-content/50 text-sm font-normal">
-                                            {{ user.email }}
-                                        </small>
-                                    </div>
-                                </li>
+                                <li class="dropdown-header gap-3 flex items-center">
+    <div class="avatar placeholder">
+        <div class="bg-info/20 text-info w-10 h-10 flex items-center justify-center rounded-full">
+            <span class="text-md uppercase">
+                {{ user.get_name|slice:":1" }}
+            </span>
+        </div>
+    </div>
+    <div class="min-w-0">
+        <h6 class="text-base-content text-base font-semibold truncate max-w-[8rem]">
+            {{ user.get_name|title }}
+        </h6>
+        <small class="text-base-content/50 text-sm font-normal truncate block max-w-[8rem]">
+            {{ user.email }}
+        </small>
+    </div>
+</li>
+
                                 <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
                                 {% if user.is_staff %}
                                 <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin panel</a></li>
