@@ -12,20 +12,9 @@
         </div>
 
         <div class="mt-10 sm:mx-auto max-w-lg w-full bg-base-100 shadow rounded-lg p-8">
-            <!-- Display form-wide errors -->
-            {% if form.non_field_errors %}
-                <div class="alert alert-soft alert-error flex items-start gap-4">
-                    <div class="flex flex-col gap-1">
-                        <h5 class="text-lg font-semibold">Oops!</h5>
-                        <ul class="mt-1.5 list-inside list-disc">
-                            {% for error in form.non_field_errors %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            {% endif %}
-            <!-- Form content -->
+            {# Display errors #}
+            {% include "components/form_errors.html" %}
+            {# Form content #}
             {% block form %}
             {% endblock %}
         </div>

@@ -13,4 +13,5 @@ def logout_view(request):
 
 
 def profile(request):
+
     return render(request, 'accounts/profile.html')

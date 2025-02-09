@@ -10,6 +10,8 @@
         </div>
     
         <div class="w-full bg-base-100 shadow rounded-lg p-8 flex flex-col gap-y-10">
+            
+            {# Personal info section #}
             <div>
                 <h3 class="font-semibold">Personal Info</h3>
                 <p class="mt-1 text-sm text-base-content/80">View and update your personal information</p>
@@ -33,14 +35,18 @@
                     </form>
                 </div>
             </div>
+            
+            {# Update password section #}
             <div>
                 <h3 class="font-semibold">Password</h3>
                 <p class="mt-1 text-sm text-base-content/80">Update your current account password</p>
                 <div class="mt-8 bg-base-200 rounded-lg p-8 w-full">
-                    <form  method="POST" class="space-y-4 max-w-lg">
+                    {% include "components/form_errors.html" %}
+                    <form  method="POST" action="{% url 'password_change' %}" class="space-y-4 max-w-lg">
+                        {% csrf_token %}
                         <div class="flex flex-col space-y-2">
-                            <label for="current_password" class="text-sm">Current password</label>
-                            <input type="password" name="current_password" id="current_password" class="input input-bordered" required>
+                            <label for="old_password" class="text-sm">Old password</label>
+                            <input type="password" name="old_password" id="old_password" class="input input-bordered" required>
                         </div>
                         <div class="flex flex-col space-y-2">
                             <label for="new_password" class="text-sm">New password</label>
