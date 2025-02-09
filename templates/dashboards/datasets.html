@@ -6,12 +6,18 @@
 {% block dashboard %}
     <div class="w-full p-10 bg-base-100 rounded-lg shadow-md">
         <div class="flex flex-col flex-wrap gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <label class="input-group max-w-xs">
-              <span class="input-group-text">
-                <span class="icon-[tabler--search] size-6"></span>
-              </span>
-                <input type="search" class="input grow" placeholder="Search" />
-            </label>
+            {# Search #}
+            <div class="flex flex-row gap-x-2">
+                <label class="input-group max-w-xs">
+                    <span class="input-group-text">
+                        <span class="icon-[tabler--search] size-6"></span>
+                    </span>
+                    <input type="search" class="input grow" placeholder="Search" />
+                </label>
+
+                <button class="btn">Search</button>
+            </div>
+
         </div>
 
         <div class="mt-8 overflow-x-auto">
