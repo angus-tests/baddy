@@ -19,7 +19,7 @@ def redirect_authenticated_user(view):
 
 
 urlpatterns = [
-    path('profile/', views.profile, name='profile'),  # Allow all users to access
+    path('profile/', views.profile, name='profile'),
 
     # Redirect logged-in users away from login and password reset pages
     path("login/", redirect_authenticated_user(auth_views.LoginView.as_view()), name="login"),

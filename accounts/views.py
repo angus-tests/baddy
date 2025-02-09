@@ -1,10 +1,10 @@
 from django.contrib.auth import login, logout
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
 
-# Create your views here.
+@login_required
 @require_POST
 def logout_view(request):
     """Logs out the user and redirects to the index page."""
@@ -12,6 +12,7 @@ def logout_view(request):
     return redirect('index')
 
 
+@login_required
 def profile(request):
-
+    """Renders the user profile page."""
     return render(request, 'accounts/profile.html')
