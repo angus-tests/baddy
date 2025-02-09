@@ -22,7 +22,7 @@ module.exports = {
           ...require("flyonui/src/theming/themes")["light"],
           "primary": "#F43F5E",
           "primary-content": "#FFFFFF",
-
+          "primary-900": "#881337"
         }
       },
       {
@@ -30,6 +30,7 @@ module.exports = {
           ...require("flyonui/src/theming/themes")["dark"],
           "primary": "#F43F5E",
           "primary-content": "#FFFFFF",
+          "primary-900": "#881337"
         }
       },
     ]

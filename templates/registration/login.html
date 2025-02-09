@@ -1,5 +1,6 @@
 {% extends "_auth_base.html" %}
 {% block title %}Sign in to your account{% endblock %}
+{% block subtitle %}Use your <b>username</b> and password to login{% endblock %}
 
 {% block form %}
     <form class="space-y-8" method="POST">
@@ -11,6 +12,7 @@
                 <input
                     type="text"
                     autocomplete="username"
+                    placeholder="steve"
                     class="input {% if form.username.errors %}is-invalid{% endif %}"
                     id="username"
                     name="username"
