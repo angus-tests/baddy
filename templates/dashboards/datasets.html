@@ -37,10 +37,9 @@
                 <tr>
                     <th>dataset_id</th>
                     <th>published_at</th>
-                    <th>filename</th>
                     <th>period</th>
-                    <th>schema_version</th>
                     <th>survey_id</th>
+                    <th>schema_version</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,19 +50,16 @@
                                 {{ dataset.dataset_id }}
                             </td>
                             <td class="text-nowrap">{{ dataset.published_at|date:"d M Y" }}</td>
+                            <td>{{ dataset.period }}</td>
                             <td>
-                                <a href="#" class="link link-primary">{{ dataset.filename }}</a>
+                                {{ dataset.survey_id }}
                             </td>
-                            <td>{{ dataset.period|date:"d/m/y" }}</td>
                             <td>
                                 {% if dataset.schema_version == 'v2' %}
                                     <span class="badge badge-success badge-soft text-xs">{{ dataset.schema_version }}</span>
                                 {% else %}
-                                    <span class="badge badge-warning badge-soft text-xs">{{ dataset.schema_version }}</span>
+                                    <span class="badge badge-soft text-xs">{{ dataset.schema_version }}</span>
                                 {% endif %}
-                            </td>
-                            <td>
-                                {{ dataset.survey_id }}
                             </td>
                         </tr>
                     {% endfor %}

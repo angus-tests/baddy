@@ -23,7 +23,7 @@ class FakeDatasetRepository(DatasetRepositoryInterface):
         return DatasetFactory.from_dict({
             "dataset_id": self.fake.uuid4(),
             "filename": f"{self.fake.word()}.csv",
-            "period": self.fake.date_this_decade().isoformat(),
+            "period": self.fake.date_this_decade().strftime("%Y%m%d"),
             "schema_version": self.fake.random_element(elements=("v1", "v2")),
             "survey_id": self.fake.random_int(min=1000, max=9999),
             "published_at": self.fake.date_time_this_year().isoformat(),
