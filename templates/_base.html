@@ -19,10 +19,16 @@
     <link rel="manifest" href="{% static 'images/favicons/site.webmanifest' %}" />
     <title>Baddy</title>
 
-    {% compress css %}
-        <link rel="stylesheet"
-              href="{% static 'src/output.css' %}">
-    {% endcompress %}
+    {% if debug %}
+      <!-- In Development Mode (Vite dev server) -->
+      <script type="module" src="http://localhost:5173/@vite/client"></script>
+      <script type="module" src="http://localhost:5173/static/js/main.js"></script>  <!-- Single bundled JS file -->
+      <link rel="stylesheet" href="http://localhost:5173/static/css/styles.css">
+    {% else %}
+      <!-- In Production Mode (Optimized file) -->
+      <script type="module" src="{% static 'dist/main.js' %}"></script> <!-- Single bundled JS file -->
+      <link rel="stylesheet" href="{% static 'dist/styles.css' %}">
+    {% endif %}
 </head>
 
 <body class="bg-sand dark:bg-sand-dark flex flex-col min-h-screen h-full">
@@ -129,12 +135,6 @@
         // Dynamically set the current year in the footer
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
-
-    {% compress js %}
-        <script src="{% static 'src/js/alpine.js' %}" defer></script>
-        <script src="{% static 'src/js/flyonui.js' %}"></script>
-        <script src="{% static 'src/js/dark.js' %}" defer></script>
-    {% endcompress %}
 
 </body>
 
