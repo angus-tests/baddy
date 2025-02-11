@@ -25,3 +25,14 @@ class DatasetService(Service):
         :return: A list of Dataset objects.
         """
         return self.dataset_repository.get_all()
+
+    def search_datasets(self, datasets: list[Dataset], search_query: str) -> list[Dataset]:
+        """
+        Search datasets by name.
+        :param datasets: A list of Dataset objects.
+        :param search_query: The search query.
+        :return: A list of Dataset objects where the query is contained within the id.
+        """
+
+        # Go through each dataset and check if the search query is in the name
+        return [dataset for dataset in datasets if search_query.lower() in dataset.dataset_id.lower()]

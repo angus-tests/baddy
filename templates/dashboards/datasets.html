@@ -7,17 +7,21 @@
     <div class="w-full p-10 bg-base-100 rounded-lg shadow-md">
         <div class="flex flex-col gap-y-4 md:flex-row md:justify-between md:items-end">
             {# Search #}
-            <div class="flex flex-col sm:flex-row gap-y-4 sm:gap-x-2 sm:items-center">
-
+            <form method="GET" class="flex flex-col sm:flex-row gap-y-4 sm:gap-x-2 sm:items-center">
                 <label class="input-group">
                     <span class="input-group-text">
                         <span class="icon-[tabler--search] size-6"></span>
                     </span>
-                    <input type="search" class="input" placeholder="Search" />
+                    <input
+                        type="search"
+                        name="q"
+                        class="input"
+                        placeholder="Search"
+                        value="{{ search_query|default:'' }}"
+                    />
                 </label>
-
-                <button class="btn">Search</button>
-            </div>
+                <button class="btn" type="submit">Search</button>
+            </form>
 
             {# Sort #}
             <div class="md:w-44">
