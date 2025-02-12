@@ -17,16 +17,17 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-touch-icon.png' %}" />
     <meta name="apple-mobile-web-app-title" content="Baddy" />
     <link rel="manifest" href="{% static 'images/favicons/site.webmanifest' %}" />
-    <title>Baddy</title>
+
 
     {% if debug %}
-      <!-- In Development Mode (Vite dev server) -->
-      <script type="module" src="http://localhost:5173/@vite/client"></script>
-      <script type="module" src="http://localhost:5173/static/js/main.js"></script>  <!-- Single bundled JS file -->
-      <link rel="stylesheet" href="http://localhost:5173/static/css/styles.css">
+      <title>Baddy - Debug</title>
+      <!-- In development mode, use Vite's dev server -->
+      <script type="module" src="http://localhost:5173/js/main.js"></script>
+      <link rel="stylesheet" href="http://localhost:5173/input.css">
     {% else %}
-      <!-- In Production Mode (Optimized file) -->
-      <script type="module" src="{% static 'dist/main.js' %}"></script> <!-- Single bundled JS file -->
+      <title>Baddy</title>
+      <!-- In production, use the bundled output -->
+      <script type="module" src="{% static 'dist/main.js' %}"></script>
       <link rel="stylesheet" href="{% static 'dist/styles.css' %}">
     {% endif %}
 </head>

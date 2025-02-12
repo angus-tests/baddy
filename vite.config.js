@@ -1,22 +1,17 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  root: 'assets', // This makes sure Vite serves from the 'static' folder
+  publicDir: 'static', // This makes sure assets are served from 'static' as well
   build: {
-    outDir: 'static/dist',  // Output to Django's static folder
-    emptyOutDir: true,      // Empty the directory before building
-    assetsDir: '',          // Don't add an extra 'assets' subfolder
-
-    // Define the entry points for JS and CSS
+    outDir: 'dist',  // This will build to Django's static folder
+    emptyOutDir: true,
+    assetsDir: '',
     rollupOptions: {
       input: {
-        main: 'static/src/js/main.js',
-        styles: 'static/src/input.css',
-      }
-    }
-  },
-  server: {
-    proxy: {
-      '/': 'http://localhost:8000', // Proxy API calls to Django backend (for development)
+        main: 'js/main.js',  // JS entry
+        styles: 'input.css', // CSS entry
+      },
     },
   },
 });
