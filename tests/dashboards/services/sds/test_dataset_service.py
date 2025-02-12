@@ -36,9 +36,12 @@ class TestDatasetService(TestCase):
         # Create a list of Dataset objects from the dictionaries
         datasets = DatasetFactory.from_list_of_dicts(datasets)
 
+        # Mock the return value of get_all_datasets
+        self.fake_dataset_repository.get_all.return_value = datasets
+
         # Search for the dataset with the ID "0a4e5b70-a6d9-44a3-b510-ab53c7fee39f"
         search_query = "0a4e5b70-a6d9-44a3-b510-ab53c7fee39f"
-        result = self.dataset_service.search_datasets(datasets, search_query)
+        result = self.dataset_service.search_datasets(search_query)
 
         # Assert that the result is a list containing the first dataset
         self.assertEqual(result, [datasets[0]])
@@ -72,8 +75,8 @@ class TestDatasetService(TestCase):
         datasets = DatasetFactory.from_list_of_dicts(datasets)
 
         # Search with multiple fields
-        search_query = "20220201 v2 5678"
-        result = self.dataset_service.search_datasets(datasets, search_query)
+        search_query = "20220201 5678"
+        result = self.dataset_service.search_datasets(search_query)
 
         # Assert that the result is a list containing the first dataset
         self.assertEqual(result, [datasets[1]])

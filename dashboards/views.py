@@ -16,12 +16,13 @@ def dataset_dashboard(request):
     # Get the search query from request
     search_query = request.GET.get("q", "").strip()
 
-    # Fetch all the datasets
-    datasets = dataset_service.get_all_datasets()
-
     # Filter datasets if search_query exists
     if search_query:
-        datasets = dataset_service.search_datasets(datasets, search_query)
+        datasets = dataset_service.search_datasets(search_query)
+
+    # Otherwise, get all datasets
+    else:
+        datasets = dataset_service.get_all_datasets()
 
     # Paginate datasets (e.g., 10 datasets per page)
     paginator = Paginator(datasets, 50)  # Adjust number per page as needed

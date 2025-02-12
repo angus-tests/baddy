@@ -4,6 +4,8 @@ from dashboards.models.sds.dataset import Dataset
 
 import logging
 
+from dashboards.services.sds.dataset_search import DatasetSearch
+
 logger = logging.getLogger(__name__)
 
 
@@ -30,13 +32,15 @@ class DatasetService(Service):
         """
         return sorted(self.dataset_repository.get_all(), key=lambda x: x.dataset_id)
 
-    def search_datasets(self, datasets: list[Dataset], search_query: str) -> list[Dataset]:
+    def search_datasets(self, search_query: str, strategy: str = "all") -> list[Dataset]:
         """
-        Search datasets by name.
-        :param datasets: A list of Dataset objects.
-        :param search_query: The search query.
-        :return: A list of Dataset objects where the query is contained within the id.
-        """
+        Search datasets using a specific strategy.
 
-        # Filter the datasets by the search query
-        return [dataset for dataset in datasets if search_query in dataset.dataset_id]
+        :param search_query: The search query.
+        :param strategy: The search strategy ('id', 'filename', 'period', 'survey', 'all').
+        :return: A list of matching Dataset objects.
+        """
+        datasets = self.get_all_datasets()
+        return []
+
+
