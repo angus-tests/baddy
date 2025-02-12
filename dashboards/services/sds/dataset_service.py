@@ -37,16 +37,6 @@ class DatasetService(Service):
         :param search_query: The search query.
         :return: A list of Dataset objects where the query is contained within the id.
         """
-        logger.info(f"Starting search for {search_query}")
-        matches = []
-        # Go through the datasets
-        for dataset in datasets:
-            did = dataset.dataset_id.lower()
-            # Check if the search query is in the dataset id
-            if search_query.lower() in did:
-                matches.append(dataset)
-            else:
-                print(f"{search_query.lower()} not in {did}")
 
-
-        return matches
+        # Filter the datasets by the search query
+        return [dataset for dataset in datasets if search_query in dataset.dataset_id]
