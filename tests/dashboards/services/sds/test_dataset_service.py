@@ -34,7 +34,7 @@ class TestDatasetService(TestCase):
         ]
 
         # Create a list of Dataset objects from the dictionaries
-        datasets = [DatasetFactory.from_dict(dataset) for dataset in datasets]
+        datasets = DatasetFactory.from_list_of_dicts(datasets)
 
         # Search for the dataset with the ID "0a4e5b70-a6d9-44a3-b510-ab53c7fee39f"
         search_query = "0a4e5b70-a6d9-44a3-b510-ab53c7fee39f"
@@ -43,4 +43,38 @@ class TestDatasetService(TestCase):
         # Assert that the result is a list containing the first dataset
         self.assertEqual(result, [datasets[0]])
 
+    def test_multi_field_search(self):
+        datasets = [
+            {
+                "dataset_id": "0a4e5b70-a6d9-44a3-b510-ab53c7fee39f",
+                "period": "20220101",
+                "schema_version": "v1",
+                "survey_id": 1234,
+                "published_at": "2022-01-01T00:00:00",
+            },
+            {
+                "dataset_id": "1b4e5b70-a6d9-44a3-b510-ab53c7fee39f",
+                "period": "20220201",
+                "schema_version": "v2",
+                "survey_id": 5678,
+                "published_at": "2022-02-01T00:00:00",
+            },
+            {
+                "dataset_id": "2c4e5b70-a6d9-44a3-b510-ab53c7fee39f",
+                "period": "20240203",
+                "schema_version": "v2",
+                "survey_id": 5678,
+                "published_at": "2022-02-01T00:00:00",
+            }
+        ]
+
+        # Create a list of Dataset objects from the dictionaries
+        datasets = DatasetFactory.from_list_of_dicts(datasets)
+
+        # Search with multiple fields
+        search_query = "20220201 v2 5678"
+        result = self.dataset_service.search_datasets(datasets, search_query)
+
+        # Assert that the result is a list containing the first dataset
+        self.assertEqual(result, [datasets[1]])
 
