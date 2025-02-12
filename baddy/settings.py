@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-1nze18c1fv*tq2%0#z%bo4uagw
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
-#DEBUG = False
+DEBUG = True
 
 # VERSION FILE (pyproject.toml)
 POETRY_TOML = os.path.join(BASE_DIR, "pyproject.toml")
@@ -88,6 +88,7 @@ INSTALLED_APPS = [
     "baddy",
     "dashboards",
     "accounts",
+    "corsheaders"
 ]
 
 # User model
@@ -114,9 +115,13 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "baddy.urls"
+
+# settings.py
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
@@ -191,6 +196,11 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
+
+INTERNAL_IPS = (
+    '127.0.0.1',
+    '192.168.1.23',
+)
 
 LANGUAGE_CODE = "en-us"
 
