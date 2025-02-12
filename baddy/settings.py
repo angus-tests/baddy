@@ -194,6 +194,7 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 

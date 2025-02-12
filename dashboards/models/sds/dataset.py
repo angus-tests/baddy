@@ -9,7 +9,6 @@ class Dataset:
     A class that represents a sds
     """
     dataset_id: str
-    filename: str
     period: date
     survey_id: str
     schema_version: str

@@ -15,7 +15,6 @@ class DatasetFactory:
         """Creates a Dataset from a dictionary."""
         return Dataset(
             dataset_id=data["dataset_id"],
-            filename=data["filename"],
             period=data["period"],
             survey_id=data["survey_id"],
             schema_version=data["schema_version"],

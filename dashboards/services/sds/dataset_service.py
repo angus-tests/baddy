@@ -2,6 +2,10 @@ from dashboards.interfaces.sds.dataset_repository_interface import DatasetReposi
 from dashboards.interfaces.service import Service
 from dashboards.models.sds.dataset import Dataset
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class DatasetService(Service):
     """
@@ -24,7 +28,7 @@ class DatasetService(Service):
         Get all datasets.
         :return: A list of Dataset objects.
         """
-        return self.dataset_repository.get_all()
+        return sorted(self.dataset_repository.get_all(), key=lambda x: x.dataset_id)
 
     def search_datasets(self, datasets: list[Dataset], search_query: str) -> list[Dataset]:
         """
@@ -33,6 +37,16 @@ class DatasetService(Service):
         :param search_query: The search query.
         :return: A list of Dataset objects where the query is contained within the id.
         """
+        logger.info(f"Starting search for {search_query}")
+        matches = []
+        # Go through the datasets
+        for dataset in datasets:
+            did = dataset.dataset_id.lower()
+            # Check if the search query is in the dataset id
+            if search_query.lower() in did:
+                matches.append(dataset)
+            else:
+                print(f"{search_query.lower()} not in {did}")
 
-        # Go through each dataset and check if the search query is in the name
-        return [dataset for dataset in datasets if search_query.lower() in dataset.dataset_id.lower()]
+
+        return matches
