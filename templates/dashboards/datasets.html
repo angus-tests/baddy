@@ -22,16 +22,17 @@
         />
     </label>
 
-    <!-- Clear Button -->
-    <button
-        type="button"
-        class="btn"
-        x-show="searchQuery.trim() !== ''"
-        @click="searchQuery = ''"
-        style="display: none;"
-    >
-        Clear
-    </button>
+    <!-- Reset Button -->
+<button
+    type="button"
+    class="btn"
+    x-data="{ showButton: window.location.search !== '' }"
+    x-show="showButton"
+    @click="window.location.href = '{{ request.path }}'"
+>
+    Reset
+</button>
+
 
     <!-- Search Button -->
     <button class="btn" type="submit" x-show="searchQuery.trim() !== ''" style="display: none">
