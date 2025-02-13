@@ -23,15 +23,18 @@
     </label>
 
     <!-- Reset Button -->
-<button
-    type="button"
-    class="btn"
-    x-data="{ showButton: window.location.search !== '' }"
-    x-show="showButton"
-    @click="window.location.href = '{{ request.path }}'"
->
-    Reset
-</button>
+    <button
+        type="button"
+        class="btn"
+        x-data="{ showButton: false }"
+        x-init="showButton = new URLSearchParams(window.location.search).has('q')"
+        x-show="showButton"
+        @click="window.location.href = '{{ request.path }}'"
+        style="display: none;"
+    >
+        Reset
+    </button>
+
 
 
     <!-- Search Button -->
