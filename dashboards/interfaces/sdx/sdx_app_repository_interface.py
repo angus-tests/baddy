@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from dashboards.models.sdx.sdx_app import SDXApp
+from dashboards.dto.sdx.sdx_app import SDXApp
 
 
 class SDXAppRepositoryInterface(ABC):

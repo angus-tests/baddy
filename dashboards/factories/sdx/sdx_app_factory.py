@@ -1,6 +1,6 @@
 from typing import Any
 
-from dashboards.models.sdx.sdx_app import SDXApp
+from dashboards.dto.sdx.sdx_app import SDXApp
 
 
 class SDXAppFactory:

@@ -12,6 +12,7 @@ class Command(BaseCommand):
             "non-technical": [],
             "sdx": [],
             "sds": [],
+            "secret": [],
             "support": [
                 "view_customuser",
                 "change_customuser",

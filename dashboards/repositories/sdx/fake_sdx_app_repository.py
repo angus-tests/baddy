@@ -2,7 +2,7 @@ from faker import Faker
 
 from dashboards.factories.sdx.sdx_app_factory import SDXAppFactory
 from dashboards.interfaces.sdx.sdx_app_repository_interface import SDXAppRepositoryInterface
-from dashboards.models.sdx.sdx_app import SDXApp, AppStatus
+from dashboards.dto.sdx.sdx_app import SDXApp
 
 
 class FakeSDXAppRepository(SDXAppRepositoryInterface):

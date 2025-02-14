@@ -1,7 +1,5 @@
 from dashboards.factories.sds.dataset_factory import DatasetFactory
 from dashboards.interfaces.sds.dataset_repository_interface import DatasetRepositoryInterface
-from dashboards.models.sds.dataset import Dataset
-from faker import Faker
 
 
 class FakeDatasetRepository(DatasetRepositoryInterface):
