@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+import tomllib
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -27,7 +28,26 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-1nze18c1fv*tq2%0#z%bo4uagw
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
-#DEBUG = False
+DEBUG = True
+
+# VERSION FILE (pyproject.toml)
+POETRY_TOML = os.path.join(BASE_DIR, "pyproject.toml")
+
+
+def get_version():
+    """
+    We use the version from the pyproject.toml file
+    """
+    try:
+        with open(POETRY_TOML, "rb") as f:
+            data = tomllib.load(f)
+            return data["tool"]["poetry"]["version"]
+    except (FileNotFoundError, KeyError):
+        return "N/A"
+
+
+VERSION = get_version()
+
 
 # Get the ALLOWED_HOSTS environment variable from the environment or .env file
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
@@ -68,6 +88,7 @@ INSTALLED_APPS = [
     "baddy",
     "dashboards",
     "accounts",
+    "corsheaders"
 ]
 
 # User model
@@ -94,9 +115,13 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "baddy.urls"
+
+# settings.py
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
@@ -110,6 +135,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "baddy.context_processors.project_version"
             ],
         },
     },
@@ -168,8 +194,14 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
+
+INTERNAL_IPS = (
+    '127.0.0.1',
+    '192.168.1.23',
+)
 
 LANGUAGE_CODE = "en-us"
 
