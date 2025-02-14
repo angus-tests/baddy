@@ -50,7 +50,7 @@ class DatasetService(Service):
         for dataset in datasets:
             mini_matches = []
             for word in search_query:
-                if word in dataset.get_search_string().lower():
+                if word in dataset.get_search_string():
                     mini_matches.append(True)
                 else:
                     mini_matches.append(False)

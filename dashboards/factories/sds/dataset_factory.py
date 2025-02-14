@@ -16,7 +16,7 @@ class DatasetFactory:
         return Dataset(
             dataset_id=data["dataset_id"],
             period=data["period"],
-            survey_id=data["survey_id"],
+            survey_id=str(data["survey_id"]),
             schema_version=data["schema_version"],
             published_at=DatasetFactory._parse_date(data.get("published_at")),
         )
