@@ -49,3 +49,8 @@ class TestDatasetService(TestCase):
         """Test search across multiple fields."""
         result = self.dataset_service.search_datasets(search_query="20220201 5678")
         self.assertEqual(result, [self.datasets[1]])
+
+    def test_search_version(self):
+        """Test search by schema version."""
+        result = self.dataset_service.search_datasets(search_query="v2")
+        self.assertEqual(result,[self.datasets[1], self.datasets[2]])
