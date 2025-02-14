@@ -37,27 +37,16 @@ class DatasetService(Service):
         :param search_query: The search query.
         :return: A list of matching Dataset objects.
         """
-
         # Fetch all datasets
         datasets = self.get_all_datasets()
 
-        # Split the search query into words
-        search_query = search_query.lower().split(' ')
-
-        matches = []
+        # Normalize search query
+        search_terms = search_query.lower().split()
 
         # Filter datasets based on the search query
-        for dataset in datasets:
-            mini_matches = []
-            for word in search_query:
-                if word in dataset.get_search_string():
-                    mini_matches.append(True)
-                else:
-                    mini_matches.append(False)
-
-            if all(mini_matches):
-                matches.append(dataset)
-
-        return matches
+        return [
+            dataset for dataset in datasets
+            if all(term in dataset.get_search_string() for term in search_terms)
+        ]
 
 
