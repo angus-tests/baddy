@@ -10,6 +10,9 @@ from dashboards.services.sds.dataset_service import DatasetService
 @login_required
 @user_passes_test(lambda u: has_dashboard_access(u, "dataset_dashboard"))
 def dataset_dashboard(request):
+
+    number_of_results_per_page = 50
+
     # Load the sds service
     dataset_service: DatasetService = get_dataset_service()
 
@@ -24,8 +27,10 @@ def dataset_dashboard(request):
     else:
         datasets = dataset_service.get_all_datasets()
 
+    # Sort datasets by published_at date
+
     # Paginate datasets (e.g., 10 datasets per page)
-    paginator = Paginator(datasets, 5)  # Adjust number per page as needed
+    paginator = Paginator(datasets, number_of_results_per_page)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
