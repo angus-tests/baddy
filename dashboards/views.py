@@ -29,7 +29,7 @@ def dataset_dashboard(request):
 
     # Sort datasets by published_at date
 
-    # Paginate datasets (e.g., 10 datasets per page)
+    # Paginate datasets
     paginator = Paginator(datasets, number_of_results_per_page)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
