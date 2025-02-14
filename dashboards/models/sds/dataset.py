@@ -16,3 +16,6 @@ class Dataset:
 
     def __str__(self):
         return self.dataset_id
+
+    def get_search_string(self):
+        return ' '.join([str(val) for val in self.__dict__.values() if val is not None])
