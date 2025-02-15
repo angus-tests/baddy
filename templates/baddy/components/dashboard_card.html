@@ -1,9 +1,15 @@
-<a href="{{ url }}" class="card group hover:shadow-lg hover:outline hover:outline-2 hover:outline-primary sm:max-w-sm bg-base-100 mx-auto min-w-80">
-    <figure class="h-36 bg-neutral-200 flex justify-center items-center overflow-hidden" aria-label="{{ title }}">
-        <img src="{{ image_url }}" alt="{{ title }}" class="w-44 h-44 object-contain transition-transform duration-500 group-hover:scale-110" />
+{% load static %}
+
+{% with image_url='images/dashboards/'|add:dashboard.image_name %}
+
+<a href="{% url 'dashboard_view' dashboard.slug %}" class="card group hover:shadow-lg hover:outline hover:outline-2 hover:outline-primary sm:max-w-sm bg-base-100 mx-auto min-w-80">
+    <figure class="h-36 bg-neutral-200 flex justify-center items-center overflow-hidden" aria-label="{{ dashboard.name }}">
+        <img src="{% static image_url %}" alt="{{ dashboard.name }}" class="w-44 h-44 object-contain transition-transform duration-500 group-hover:scale-110" />
     </figure>
     <div class="card-body">
-        <h5 class="card-title mb-2.5">{{ title }}</h5>
-        <p class="mb-6">{{ description }}</p>
+        <h5 class="card-title mb-2.5">{{ dashboard.name }}</h5>
+        <p class="mb-6">{{ dashboard.short_description }}</p>
     </div>
 </a>
+
+{% endwith %}

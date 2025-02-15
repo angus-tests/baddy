@@ -9,6 +9,8 @@ from django.shortcuts import render
 from django.contrib.auth import logout
 from django.views.decorators.http import require_POST
 
+from dashboards.models import Dashboard
+
 
 def index(request):
 
@@ -30,5 +32,8 @@ def four_three(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def home(request):
-    return render(request, 'baddy/home.html')
+
+    dashboards = Dashboard.objects.all()
+
+    return render(request, 'baddy/home.html', {'dashboards': dashboards})
 
