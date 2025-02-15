@@ -75,6 +75,11 @@ STATICFILES_FINDERS = [
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
+# Media
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -93,6 +98,7 @@ INSTALLED_APPS = [
 
 # User model
 AUTH_USER_MODEL = "accounts.CustomUser"
+
 
 MARKDOWNIFY = {
     "default": {

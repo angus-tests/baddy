@@ -1,10 +1,7 @@
-{% load static %}
-
-{% with image_url='images/dashboards/'|add:dashboard.image_name %}
 
 <a href="{% url 'dashboard_view' dashboard.slug %}" class="card group hover:shadow-lg hover:outline hover:outline-2 hover:outline-primary sm:max-w-sm bg-base-100 mx-auto min-w-80">
     <figure class="h-36 bg-neutral-200 flex justify-center items-center overflow-hidden" aria-label="{{ dashboard.name }}">
-        <img src="{% static image_url %}" alt="{{ dashboard.name }}" class="w-44 h-44 object-contain transition-transform duration-500 group-hover:scale-110" />
+        <img src="{{ dashboard.get_image_url }}" alt="{{ dashboard.name }}" class="w-44 h-44 object-contain transition-transform duration-500 group-hover:scale-110" />
     </figure>
     <div class="card-body">
         <h5 class="card-title mb-2.5">{{ dashboard.name }}</h5>
@@ -12,4 +9,3 @@
     </div>
 </a>
 
-{% endwith %}

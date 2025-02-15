@@ -14,11 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from baddy import views
-
+from baddy import views, settings
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -32,3 +32,7 @@ urlpatterns = [
     path("dashboards/", include("dashboards.urls")),  # Include dashboard-specific routes
     path("", include("accounts.urls")),  # Include account routes
 ]
+
+# Enable serving media files in development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
