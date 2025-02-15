@@ -1,20 +1,20 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import User
 
-DASHBOARD_PERMISSIONS = {
-    "dataset_dashboard": "sds",
-    "sdx_health_dashboard": "sdx",
-    "secret_dashboard": "superusers",
-}
+from dashboards.models import Dashboard
 
 
-def has_dashboard_access(user: User | AbstractBaseUser, dashboard_name: str) -> bool:
-    """Check if the user has access to a specific dashboard."""
+def has_dashboard_access(user, dashboard_slug: str) -> bool:
+    """
+    Helper function to check if a user has access to a dashboard.
+    :param user: User to check access for
+    :param dashboard_slug: Slug of the dashboard to check access for
+    :return:  True if the user has access to the dashboard, False otherwise
+    """
+
+    # Staff and superusers have access to all dashboards
     if user.is_superuser or user.is_staff:
         return True
 
-    required_group = DASHBOARD_PERMISSIONS.get(dashboard_name)
-    if not required_group:
-        return False  # Dashboard not found in permissions
-
-    return user.groups.filter(name=required_group).exists()
+    # Check the users groups to see if they have access to the dashboard
+    return Dashboard.objects.filter(slug=dashboard_slug, allowed_groups__in=user.groups.all()).exists()
