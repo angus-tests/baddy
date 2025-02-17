@@ -23,13 +23,9 @@ def production_flag(request):
 
 def get_vite_asset(file_name):
     """Reads Vite manifest to get the hashed asset file."""
-    try:
-        manifest_path = os.path.join(settings.BASE_DIR, 'static', 'dist', '.vite' 'manifest.json')
-        with open(manifest_path, 'r') as manifest_file:
-            manifest = json.load(manifest_file)
+    manifest_path = os.path.join(settings.BASE_DIR, 'static', 'dist', '.vite/manifest.json')
+    with open(manifest_path, 'r') as manifest_file:
+        manifest = json.load(manifest_file)
 
-        # The `file_name` should be the original name without hash
-        return manifest.get(file_name, {}).get('file', file_name)
-
-    except (FileNotFoundError, json.JSONDecodeError):
-        return file_name  # Fallback to original file name if manifest is missing or invalid
+    # The `file_name` should be the original name without hash
+    return manifest.get(file_name, {}).get('file', file_name)
