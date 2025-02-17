@@ -92,9 +92,6 @@ USE_TZ = True
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Internal Debugging
-INTERNAL_IPS = ('127.0.0.1', '192.168.1.23')
-
 
 # Markdown Config
 MARKDOWNIFY = {

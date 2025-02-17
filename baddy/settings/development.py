@@ -20,5 +20,6 @@ INTERNAL_IPS = (
     '192.168.1.23',
 )
 
+
 CORS_ALLOW_ALL_ORIGINS = True
 
