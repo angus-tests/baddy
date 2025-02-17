@@ -9,8 +9,8 @@ export default defineConfig({
     assetsDir: '',
     rollupOptions: {
       input: {
-        main: 'js/main.js',  // JS entry
-        styles: 'input.css', // CSS entry
+        main: 'assets/js/main.js',  // JS entry
+        styles: 'assets/input.css', // CSS entry
       },
     },
   },
