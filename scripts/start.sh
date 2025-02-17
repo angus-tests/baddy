@@ -3,10 +3,6 @@
 # Exit immediately if any command fails
 set -e
 
-# Run Django collectstatic (to gather static files)
-echo "Running collectstatic..."
-poetry run python manage.py collectstatic --noinput
-
 # Run Django migrations to ensure the database is up-to-date
 echo "Running migrations..."
 poetry run python manage.py migrate --noinput

@@ -19,7 +19,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "compressor",
     "baddy",
     "dashboards",
     "accounts",
@@ -60,20 +59,17 @@ TEMPLATES = [
     },
 ]
 
+# Static Files
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Directory where static files will be collected
 
-# COMPRESSOR SETTINGS
-COMPRESS_ROOT = BASE_DIR / 'static'
-COMPRESS_ENABLED = True
+# Where to find static files
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
     os.path.join(BASE_DIR, 'static')
 ]
-
-# Static Files
-STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 ROOT_URLCONF = "baddy.urls"
