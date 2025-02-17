@@ -23,14 +23,11 @@ urlpatterns = [
 
     # Redirect logged-in users away from login and password reset pages
     path("login/", redirect_authenticated_user(auth_views.LoginView.as_view()), name="login"),
-    # path("password_reset/", redirect_authenticated_user(auth_views.PasswordResetView.as_view()), name="password_reset"),
 
     # Other auth routes remain unchanged
     path("password_change/", auth_views.PasswordChangeView.as_view(), name="password_change"),
     path("password_change/done/", auth_views.PasswordChangeDoneView.as_view(), name="password_change_done"),
 
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
-    # path("password_reset/done/", auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
-    # path("reset/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
-    # path("reset/done/", auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
+
 ]
