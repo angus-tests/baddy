@@ -60,15 +60,17 @@ TEMPLATES = [
 ]
 
 # Static Files
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Directory where static files will be collected
 
 # Where to find static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # Points to your project-level static folder
+]
+
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
-    os.path.join(BASE_DIR, 'static')
 ]
 
 

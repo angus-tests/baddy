@@ -79,17 +79,20 @@ RUN poetry install --no-root --no-dev
 # Copy Django application files
 COPY . /app/
 
-# Install system dependencies (minimal)
-RUN apt-get update && apt-get install -y libpq-dev && rm -rf /var/lib/apt/lists/*
+# Install system dependencies (minimal) for Nginx
+RUN apt-get update && apt-get install -y libpq-dev nginx && rm -rf /var/lib/apt/lists/*
 
 # Copy built static files from frontend builder stage
 COPY --from=frontend-builder /app/static /app/static
 
+# Copy Nginx configuration
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Ensure static files are collected
 RUN poetry run python manage.py collectstatic --noinput
 
-# Expose the application port
-EXPOSE 8000
+# Expose the application port (NGINX)
+EXPOSE 80
 
-# Run the start.sh script
+# Start Nginx and Gunicorn
 ENTRYPOINT ["/scripts/start.sh"]
