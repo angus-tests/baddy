@@ -13,7 +13,7 @@ DATABASES = {
 
 
 # Email backend for development
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Auth Validators
 AUTH_PASSWORD_VALIDATORS = []

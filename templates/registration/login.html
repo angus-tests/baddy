@@ -10,22 +10,22 @@
             {% with label="Username" id="username" type="text" autocomplete="username" placeholder="steve" form_field=form.old_password required=True %}
                 {% include "components/form_input.html" %}
             {% endwith %}
-        
+
             {% with label="Password" id="password" type="password" autocomplete="password" form_field=form.password required=True %}
                 {% include "components/form_input.html" %}
             {% endwith %}
-        
+
         </div>
 
         <div class="mt-6">
             <button class="btn btn-primary btn-block">Sign in</button>
         </div>
 
-        <div class="divider">Or</div>
-
-        <div class="text-center">
-            <a href="{% url 'password_reset' %}" class="link link-animated">Forgot password?</a>
-        </div>
+{#        <div class="divider">Or</div>#}
+{##}
+{#        <div class="text-center">#}
+{#            <a href="{% url 'password_reset' %}" class="link link-animated">Forgot password?</a>#}
+{#        </div>#}
 
     </form>
 {% endblock form %}

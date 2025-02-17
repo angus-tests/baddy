@@ -80,10 +80,6 @@ LOGOUT_REDIRECT_URL = '/'
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
 
-# Email Settings
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
-
 
 # Internationalization
 LANGUAGE_CODE = "en-gb"
