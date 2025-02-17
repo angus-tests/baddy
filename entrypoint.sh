@@ -9,7 +9,7 @@ poetry run python manage.py migrate --noinput
 
 # Start Gunicorn in the background
 echo "Starting Gunicorn..."
-poetry run gunicorn --bind 0.0.0.0:8000 baddy.wsgi:application &
+poetry run gunicorn baddy.wsgi:application --bind unix:/app/gunicorn.sock --workers 3 --timeout 300 &
 
 # Start Nginx in the foreground (to keep the container running)
 echo "Starting Nginx..."

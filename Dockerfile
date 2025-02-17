@@ -93,7 +93,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 RUN addgroup --system nginx && adduser --system --ingroup nginx nginx
 
 # Ensure the Nginx user has access to the static files
-#RUN chown -R nginx:nginx /app/static
+RUN chown -R nginx:nginx /app/static
 
 # Ensure the entrypoint script is accessible and executable
 COPY entrypoint.sh /app/entrypoint.sh
