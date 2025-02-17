@@ -11,7 +11,7 @@ django = "^5.1.6"
 django-compressor = "^4.5.1"
 gunicorn = "^23.0.0"
 python-dotenv = "^1.0.1"
-faker = "^35.2.0"
+faker = "^36.1.1"
 django-cors-headers = "^4.7.0"
 psycopg2-binary = "^2.9.10"
 
