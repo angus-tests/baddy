@@ -63,15 +63,16 @@ ENV PYTHONUNBUFFERED=1 \
 # Set working directory
 WORKDIR /app
 
+# Install system dependencies for Nginx, PostgreSQL, and Python
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    gcc libpq-dev nginx \
+    && apt-get clean
+
+
 # Install only runtime dependencies (minimal)
 COPY --from=builder /root/.local /root/.local
 COPY --from=builder /app/pyproject.toml /app/poetry.lock /app/
-
-# Copy over scripts
-COPY production /scripts
-
-# Make scripts executable
-RUN chmod +x /scripts/*
 
 # Reinstall dependencies in case of missing files
 RUN poetry install --no-root --no-dev
@@ -79,25 +80,27 @@ RUN poetry install --no-root --no-dev
 # Copy Django application files
 COPY . /app/
 
-
-# Install system dependencies (minimal) for Nginx
-RUN apt-get update && apt-get install -y libpq-dev nginx && rm -rf /var/lib/apt/lists/*
-
 # Copy built static files from frontend builder stage
 COPY --from=frontend-builder /app/static /app/static
-
-# Copy Nginx configuration
-COPY production/nginx.conf /etc/nginx/http.d/default.conf
-
 
 # Ensure static files are collected
 RUN poetry run python manage.py collectstatic --noinput
 
-# Ensure Nginx has the right permissions
-RUN chown -R www-data:www-data /app/staticfiles
+# Copy the Nginx configuration file
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Expose the application port (NGINX)
-EXPOSE 8000 80
+# Create a new user and group for Nginx
+RUN addgroup --system nginx && adduser --system --ingroup nginx nginx
 
-# Start Nginx and Gunicorn
-ENTRYPOINT ["/scripts/start.sh"]
+# Ensure the Nginx user has access to the static files
+#RUN chown -R nginx:nginx /app/static
+
+# Ensure the entrypoint script is accessible and executable
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+# Expose the required port for Nginx
+EXPOSE 80
+
+# Ensure entrypoint script runs
+ENTRYPOINT ["/app/entrypoint.sh"]

@@ -7,10 +7,10 @@ set -e
 echo "Running migrations..."
 poetry run python manage.py migrate --noinput
 
-# Start Nginx
-echo "Starting Nginx..."
-service nginx start
-
-# Start the Gunicorn server
+# Start Gunicorn in the background
 echo "Starting Gunicorn..."
-poetry run gunicorn --bind 0.0.0.0:8000 baddy.wsgi:application
+poetry run gunicorn --bind 0.0.0.0:8000 baddy.wsgi:application &
+
+# Start Nginx in the foreground (to keep the container running)
+echo "Starting Nginx..."
+nginx -g "daemon off;"
