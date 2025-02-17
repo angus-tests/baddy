@@ -67,8 +67,14 @@ COMPRESS_ENABLED = True
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder'
+    'compressor.finders.CompressorFinder',
+    os.path.join(BASE_DIR, 'static')
 ]
+
+# Static Files
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 ROOT_URLCONF = "baddy.urls"
 WSGI_APPLICATION = "baddy.wsgi.application"
@@ -78,10 +84,6 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-# Static Files
-STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Internationalization
