@@ -67,6 +67,12 @@ WORKDIR /app
 COPY --from=builder /root/.local /root/.local
 COPY --from=builder /app/pyproject.toml /app/poetry.lock /app/
 
+# Copy over scripts
+COPY scripts /scripts
+
+# Make scripts executable
+RUN chmod +x /scripts/*
+
 # Reinstall dependencies in case of missing files
 RUN poetry install --no-root --no-dev
 
@@ -85,5 +91,5 @@ RUN poetry run python manage.py collectstatic --noinput
 # Expose the application port
 EXPOSE 8000
 
-# Start the application with Gunicorn
-CMD ["poetry", "run", "gunicorn", "--bind", "0.0.0.0:8000", "baddy.wsgi:application"]
+# Run the start.sh script
+ENTRYPOINT ["/scripts/start.sh"]

@@ -81,7 +81,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Static Files
 STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Internationalization

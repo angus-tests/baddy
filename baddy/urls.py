@@ -30,5 +30,6 @@ urlpatterns = [
     path('home/', views.home, name='home'),
 
     path("dashboards/", include("dashboards.urls")),  # Include dashboard-specific routes
+
     path("", include("accounts.urls")),  # Include account routes
 ]

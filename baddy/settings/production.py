@@ -1,7 +1,7 @@
 from .base import *  # noqa
 
 # DEBUG = False
-DEBUG = True
+DEBUG = False
 
 #ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 ALLOWED_HOSTS = ["*"]
