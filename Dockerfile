@@ -68,7 +68,7 @@ COPY --from=builder /root/.local /root/.local
 COPY --from=builder /app/pyproject.toml /app/poetry.lock /app/
 
 # Copy over scripts
-COPY scripts /scripts
+COPY production /scripts
 
 # Make scripts executable
 RUN chmod +x /scripts/*
@@ -79,6 +79,7 @@ RUN poetry install --no-root --no-dev
 # Copy Django application files
 COPY . /app/
 
+
 # Install system dependencies (minimal) for Nginx
 RUN apt-get update && apt-get install -y libpq-dev nginx && rm -rf /var/lib/apt/lists/*
 
@@ -86,13 +87,17 @@ RUN apt-get update && apt-get install -y libpq-dev nginx && rm -rf /var/lib/apt/
 COPY --from=frontend-builder /app/static /app/static
 
 # Copy Nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY production/nginx.conf /etc/nginx/http.d/default.conf
+
 
 # Ensure static files are collected
 RUN poetry run python manage.py collectstatic --noinput
 
+# Ensure Nginx has the right permissions
+RUN chown -R www-data:www-data /app/staticfiles
+
 # Expose the application port (NGINX)
-EXPOSE 80
+EXPOSE 8000 80
 
 # Start Nginx and Gunicorn
 ENTRYPOINT ["/scripts/start.sh"]
