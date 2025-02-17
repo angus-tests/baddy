@@ -14,5 +14,6 @@ export default defineConfig({
         styles: resolve(__dirname, 'assets/input.css'),  // Ensure correct CSS path
       },
     },
+    manifest: true,  // Optionally, generate a manifest file to map the assets
   },
 });
