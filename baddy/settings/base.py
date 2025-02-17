@@ -52,7 +52,8 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "baddy.context_processors.project_version",
-                "baddy.context_processors.debug_flag"
+                "baddy.context_processors.debug_flag",
+                "baddy.context_processors.production_flag",
             ],
         },
     },

@@ -19,7 +19,7 @@
     <link rel="manifest" href="{% static 'images/favicons/site.webmanifest' %}" />
 
 
-    {% if DEBUG_FLAG %}
+    {% if not PRODUCTION_FLAG %}
       <title>Baddy - Debug</title>
       <!-- In development mode, use Vite's dev server -->
       <script type="module" src="http://localhost:5173/js/main.js"></script>

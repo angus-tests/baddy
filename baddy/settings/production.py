@@ -1,7 +1,9 @@
 from .base import *  # noqa
 
-DEBUG = False
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+# DEBUG = False
+DEBUG = True
+
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 
 # Database Configuration
 DATABASES = {
