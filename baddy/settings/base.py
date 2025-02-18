@@ -50,7 +50,6 @@ TEMPLATES = [
                 "baddy.context_processors.project_version",
                 "baddy.context_processors.debug_flag",
                 "baddy.context_processors.production_flag",
-                "baddy.context_processors.get_vite_asset",
             ],
         },
     },
