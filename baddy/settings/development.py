@@ -1,6 +1,6 @@
 from .base import *  # noqa
 
-DEBUG = os.getenv("DEBUG", "True") == "True"
+DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 
 # Security
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-1nze18c1fv*tq2%0#z%bo4uagwis5h27sco#w9efukqoi(__iz')
