@@ -17,8 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from baddy import views
-
+from baddy import views, settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name='index'),

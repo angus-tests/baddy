@@ -7,6 +7,9 @@ ALLOWED_HOSTS = ["*"]
 # App key
 SECRET_KEY = os.getenv("SECRET_KEY")
 
+# Static Files
+STATIC_ROOT = BASE_DIR / "static"
+
 # Database Configuration
 DATABASES = {
     "default": {
