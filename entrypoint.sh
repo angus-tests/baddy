@@ -1,16 +1,19 @@
 #!/bin/bash
+set -e  # Exit on error
 
-# Exit immediately if any command fails
-set -e
-
-# Run Django migrations to ensure the database is up-to-date
 echo "Running migrations..."
 poetry run python manage.py migrate --noinput
 
-# Start Gunicorn in the background
 echo "Starting Gunicorn..."
-poetry run gunicorn baddy.wsgi:application --bind unix:/app/gunicorn.sock --workers 3 --timeout 300 &
+poetry run gunicorn baddy.wsgi:application \
+    --bind unix:/app/gunicorn.sock \
+    --workers 3 --timeout 300 &
 
-# Start Nginx in the foreground (to keep the container running)
-echo "Starting Nginx..."
+# Wait for Gunicorn to create the socket
+while [ ! -S /app/gunicorn.sock ]; do
+    echo "Waiting for Gunicorn to start..."
+    sleep 1
+done
+
+echo "Gunicorn is running, starting Nginx ✅"
 nginx -g "daemon off;"
