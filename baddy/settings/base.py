@@ -8,9 +8,6 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Security
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-1nze18c1fv*tq2%0#z%bo4uagwis5h27sco#w9efukqoi(__iz')
-
 # Installed Apps
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -63,10 +60,6 @@ TEMPLATES = [
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
 
-# Where to find static files
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),  # Points to your project-level static folder
-# ]
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -103,10 +96,6 @@ MARKDOWNIFY = {
         ],
     }
 }
-
-# CSRF Trusted Origins
-if os.getenv('CSRF_HOSTS', False):
-    CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_HOSTS', 'http://localhost/').split(',')
 
 
 # Version from pyproject.toml

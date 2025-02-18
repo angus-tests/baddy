@@ -1,19 +1,32 @@
-import dj_database_url
-
 from .base import *  # noqa
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ["*"]
 
+# App key
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # Database Configuration
 DATABASES = {
-    'default': dj_database_url.config(
-        conn_max_age=600,
-        conn_health_checks=True,
-    ),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT", "5432"),
+    }
 }
+
+# CSRF Trusted Origins
+if os.getenv('CSRF_HOSTS', False):
+    CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_HOSTS', 'http://localhost/').split(',')
+else:
+    CSRF_TRUSTED_ORIGINS = ['http://localhost/']
+
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Security Settings
 # SECURE_BROWSER_XSS_FILTER = True

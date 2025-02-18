@@ -2,6 +2,9 @@ from .base import *  # noqa
 
 DEBUG = os.getenv("DEBUG", "True") == "True"
 
+# Security
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-1nze18c1fv*tq2%0#z%bo4uagwis5h27sco#w9efukqoi(__iz')
+
 ALLOWED_HOSTS = ["*"]
 
 # SQLite for Dev

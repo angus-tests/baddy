@@ -13,7 +13,6 @@ python-dotenv = "^1.0.1"
 faker = "^36.1.1"
 django-cors-headers = "^4.7.0"
 psycopg2-binary = "^2.9.10"
-dj-database-url = "^2.3.0"
 
 
 
