@@ -7,7 +7,7 @@
         {% csrf_token %}
 
         <div class="flex flex-col gap-y-4">
-            {% with label="Username" id="username" type="text" autocomplete="username" placeholder="steve" form_field=form.old_password required=True %}
+            {% with label="Username" id="username" type="text" autocomplete="username" placeholder="steve" form_field=form.username required=True %}
                 {% include "components/form_input.html" %}
             {% endwith %}
 
@@ -18,7 +18,7 @@
         </div>
 
         <div class="mt-6">
-            <button class="btn btn-primary btn-block">Sign in</button>
+            <button type="submit" class="btn btn-primary btn-block">Sign in</button>
         </div>
 
     </form>
