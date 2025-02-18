@@ -18,7 +18,8 @@ class Command(BaseCommand):
         # Create the superuser
         User = get_user_model()
         if not User.objects.filter(username=username).exists():
-            User.objects.create_superuser(username, email, password)
+            # Disable the password validation and create the superuser
+            User._default_manager.create_superuser(username, email, password)
             self.stdout.write(self.style.SUCCESS("Superuser created successfully."))
         else:
             self.stdout.write(self.style.WARNING("Superuser already exists."))
