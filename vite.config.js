@@ -1,17 +1,19 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 
 export default defineConfig({
-  root: 'assets', // This makes sure Vite serves from the 'static' folder
-  publicDir: 'static', // This makes sure assets are served from 'static' as well
+  root: 'assets',  // Vite serves files from 'assets'
+  publicDir: false,  // Disable public assets (handled manually)
   build: {
-    outDir: 'dist',  // This will build to Django's static folder
-    emptyOutDir: true,
-    assetsDir: '',
+    outDir: resolve(__dirname, 'static/dist'),  // Build output goes into 'static/dist'
+    emptyOutDir: true,  // Clean 'static/dist' before building
+    assetsDir: '',  // Prevent Vite from nesting assets under 'assets/'
     rollupOptions: {
       input: {
-        main: 'js/main.js',  // JS entry
-        styles: 'input.css', // CSS entry
+        main: resolve(__dirname, 'assets/js/main.js'),  // Ensure correct JS path
+        styles: resolve(__dirname, 'assets/input.css'),  // Ensure correct CSS path
       },
     },
+    manifest: true,  // Optionally, generate a manifest file to map the assets
   },
 });

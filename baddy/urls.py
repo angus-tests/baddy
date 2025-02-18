@@ -17,8 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from baddy import views
-
+from baddy import views, settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -30,5 +30,6 @@ urlpatterns = [
     path('home/', views.home, name='home'),
 
     path("dashboards/", include("dashboards.urls")),  # Include dashboard-specific routes
+
     path("", include("accounts.urls")),  # Include account routes
 ]

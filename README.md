@@ -56,3 +56,8 @@ When `DEBUG=False` static files are not served correctly. To overcome this, run 
 ```bash
 python manage.py runserver --insecure
 ```
+
+## Settings
+
+To switch between development and production settings, set the `DJANGO_ENV` environment variable.
+

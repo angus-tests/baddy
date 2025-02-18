@@ -1,6 +1,6 @@
 
-{% load compress %}
 {% load static %}
+{% load vite %}
 
 <!DOCTYPE html>
 <html  lang="en" data-theme="light">
@@ -19,7 +19,7 @@
     <link rel="manifest" href="{% static 'images/favicons/site.webmanifest' %}" />
 
 
-    {% if debug %}
+    {% if not PRODUCTION_FLAG %}
       <title>Baddy - Debug</title>
       <!-- In development mode, use Vite's dev server -->
       <script type="module" src="http://localhost:5173/js/main.js"></script>
@@ -27,8 +27,8 @@
     {% else %}
       <title>Baddy</title>
       <!-- In production, use the bundled output -->
-      <script type="module" src="{% static 'dist/main.js' %}"></script>
-      <link rel="stylesheet" href="{% static 'dist/styles.css' %}">
+      <script type="module" src="{% vite_asset 'js/main.js' %}"></script>
+      <link rel="stylesheet" href="{% vite_asset 'input.css' %}">
     {% endif %}
 </head>
 
