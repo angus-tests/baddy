@@ -1,6 +1,7 @@
 from .base import *  # noqa
 
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "True") == "True"
+
 ALLOWED_HOSTS = ["*"]
 
 # SQLite for Dev
