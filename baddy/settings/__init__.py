@@ -16,6 +16,6 @@ if DJANGO_ENV == "production":
 else:
     from baddy.settings.development import *
 
-# Import seeder settings
-from baddy.settings.seed import * # noqa
+# Import admin settings
+from baddy.settings.admin import * # noqa
 
