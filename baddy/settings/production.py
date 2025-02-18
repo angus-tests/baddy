@@ -1,3 +1,5 @@
+from urllib.parse import urlparse
+
 from .base import *  # noqa
 
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
@@ -7,8 +9,6 @@ ALLOWED_HOSTS = ["*"]
 # App key
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-# Static Files
-STATIC_ROOT = BASE_DIR / "static"
 
 # Database Configuration
 DATABASES = {
@@ -22,14 +22,16 @@ DATABASES = {
     }
 }
 
-# CSRF Trusted Origins
-if os.getenv('CSRF_HOSTS', False):
-    CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_HOSTS', 'http://localhost/').split(',')
+CLOUDRUN_SERVICE_URL = os.getenv("CLOUDRUN_SERVICE_URL", None)
+if CLOUDRUN_SERVICE_URL:
+    ALLOWED_HOSTS = [urlparse(CLOUDRUN_SERVICE_URL).netloc]
+    CSRF_TRUSTED_ORIGINS = [CLOUDRUN_SERVICE_URL]
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 else:
-    CSRF_TRUSTED_ORIGINS = ['http://localhost/']
+    ALLOWED_HOSTS = ["*"]
+    CSRF_TRUSTED_ORIGINS = ['http://localhost/', 'http://localhost:8000']
 
-USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Security Settings
 # SECURE_BROWSER_XSS_FILTER = True
@@ -41,7 +43,6 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # Security Settings
 SECURE_BROWSER_XSS_FILTER = False
 SECURE_CONTENT_TYPE_NOSNIFF = False
-SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 

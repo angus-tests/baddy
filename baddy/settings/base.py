@@ -58,6 +58,12 @@ TEMPLATES = [
 
 # Static Files
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "static"
+
+if os.getenv("DJANGO_ENV") == "development":
+    STATICFILES_DIRS = [
+        BASE_DIR / "static",
+    ]
 
 
 STATICFILES_FINDERS = [

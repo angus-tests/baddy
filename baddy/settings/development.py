@@ -7,10 +7,6 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-1nze18c1fv*tq2%0#z%bo4uagw
 
 ALLOWED_HOSTS = ["*"]
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
 # SQLite for Dev
 DATABASES = {
     "default": {
