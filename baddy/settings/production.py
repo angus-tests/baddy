@@ -9,6 +9,14 @@ ALLOWED_HOSTS = ["*"]
 # App key
 SECRET_KEY = os.getenv("SECRET_KEY")
 
+# Static Files
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "static"
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
 
 # Database Configuration
 DATABASES = {
