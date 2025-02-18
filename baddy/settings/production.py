@@ -1,5 +1,5 @@
 from urllib.parse import urlparse
-
+from . import BASE_DIR
 from .base import *  # noqa
 
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
@@ -30,6 +30,7 @@ DATABASES = {
     }
 }
 
+# CLOUD RUN SETTINGS
 CLOUDRUN_SERVICE_URL = os.getenv("CLOUDRUN_SERVICE_URL", None)
 if CLOUDRUN_SERVICE_URL:
     ALLOWED_HOSTS = [urlparse(CLOUDRUN_SERVICE_URL).netloc]
@@ -39,7 +40,7 @@ if CLOUDRUN_SERVICE_URL:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 else:
     ALLOWED_HOSTS = ["*"]
-    CSRF_TRUSTED_ORIGINS = ['http://localhost/', 'http://localhost:8000']
+    CSRF_TRUSTED_ORIGINS = ['http://localhost:8080', 'http://localhost:8000']
 
 
 # Security Settings
@@ -57,9 +58,6 @@ CSRF_COOKIE_SECURE = False
 
 # Auth Validators
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},

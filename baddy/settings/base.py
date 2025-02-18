@@ -1,12 +1,6 @@
 import os
 import tomllib
-from pathlib import Path
-from dotenv import load_dotenv
-
-# Load environment variables from .env
-load_dotenv()
-
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+from . import BASE_DIR
 
 # Installed Apps
 INSTALLED_APPS = [

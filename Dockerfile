@@ -83,6 +83,9 @@ COPY . /app/
 # Copy built static files from frontend builder stage
 COPY --from=frontend-builder /app/static /app/static
 
+# Ensure Django_env is production
+ENV DJANGO_ENV=production
+
 # Ensure static files are collected
 RUN poetry run python manage.py collectstatic --noinput
 

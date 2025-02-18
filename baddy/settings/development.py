@@ -1,3 +1,4 @@
+from . import BASE_DIR
 from .base import *  # noqa
 
 DEBUG = os.getenv("DEBUG", "True").lower() == "true"
