@@ -1,5 +1,5 @@
+from unittest import TestCase
 from unittest.mock import MagicMock
-from django.test import TestCase
 
 from apps.dashboards.factories.sds.dataset_factory import DatasetFactory
 from apps.dashboards.interfaces.sds.dataset_repository_interface import (
