@@ -1,6 +1,6 @@
 from dashboards.interfaces.sds.dataset_repository_interface import DatasetRepositoryInterface
 from dashboards.interfaces.service import Service
-from dashboards.models.sds.dataset import Dataset
+from dashboards.dto.sds.dataset import Dataset
 
 import logging
 

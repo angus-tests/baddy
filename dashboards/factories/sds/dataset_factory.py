@@ -2,7 +2,7 @@ from datetime import date, datetime
 from typing import Any, Optional
 
 
-from dashboards.models.sds.dataset import Dataset
+from dashboards.dto.sds.dataset import Dataset
 
 
 class DatasetFactory:
