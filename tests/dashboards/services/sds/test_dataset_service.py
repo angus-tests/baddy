@@ -5,7 +5,7 @@ from apps.dashboards.factories.sds.dataset_factory import DatasetFactory
 from apps.dashboards.interfaces.sds.dataset_repository_interface import (
     DatasetRepositoryInterface,
 )
-from apps.dashboards import DatasetService
+from apps.dashboards.services.sds.dataset_service import DatasetService
 
 
 class TestDatasetService(TestCase):
