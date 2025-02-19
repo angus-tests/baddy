@@ -15,9 +15,7 @@ def get_dataset_service() -> DatasetService:
     """
 
     # For now we are using fake data, but in the future we could replace this with a real repository.
-    return DatasetService(
-        FakeDatasetRepository()
-    )
+    return DatasetService(FakeDatasetRepository())
 
 
 def get_health_service() -> HealthService:
@@ -26,6 +24,4 @@ def get_health_service() -> HealthService:
     """
 
     # For now we are using fake data, but in the future we could replace this with a real repository.
-    return HealthService(
-        FakeSDXAppRepository()
-    )
+    return HealthService(FakeSDXAppRepository())

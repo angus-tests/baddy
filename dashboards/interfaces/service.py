@@ -8,4 +8,5 @@ class Service(metaclass=SingletonMeta):
     Services are responsible for implementing the business logic of the application
     and are singletons
     """
+
     pass

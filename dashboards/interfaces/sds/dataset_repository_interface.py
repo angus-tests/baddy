@@ -1,4 +1,3 @@
-
 from abc import ABC, abstractmethod
 
 from dashboards.dto.sds.dataset import Dataset
@@ -9,6 +8,7 @@ class DatasetRepositoryInterface(ABC):
     Interface that defines the methods that must be implemented
     by the sds repository.
     """
+
     @abstractmethod
     def get_by_id(self, dataset_id: str) -> Dataset:
         """

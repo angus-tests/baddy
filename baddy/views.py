@@ -11,13 +11,12 @@ from django.views.decorators.http import require_POST
 
 
 def index(request):
-
     # Redirect to the dashboards if the user is already logged in
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect("home")
 
     # Otherwise, render the index page
-    return render(request, 'baddy/index.html')
+    return render(request, "baddy/index.html")
 
 
 def four_three(request: HttpRequest) -> HttpResponse:
@@ -30,5 +29,4 @@ def four_three(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def home(request):
-    return render(request, 'baddy/home.html')
-
+    return render(request, "baddy/home.html")

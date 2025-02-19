@@ -21,15 +21,12 @@ from baddy import views, settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.index, name='index'),
-
-    path('403/', views.four_three, name='403'),
-
+    path("", views.index, name="index"),
+    path("403/", views.four_three, name="403"),
     path("admin/", admin.site.urls),
-
-    path('home/', views.home, name='home'),
-
-    path("dashboards/", include("dashboards.urls")),  # Include dashboard-specific routes
-
+    path("home/", views.home, name="home"),
+    path(
+        "dashboards/", include("dashboards.urls")
+    ),  # Include dashboard-specific routes
     path("", include("accounts.urls")),  # Include account routes
 ]

@@ -12,7 +12,7 @@ class CustomUser(AbstractUser):
         unique=True,
         blank=False,
         null=False,
-        help_text="Required. Used to contact a user for password resets, etc."
+        help_text="Required. Used to contact a user for password resets, etc.",
     )
 
     def save(self, *args, **kwargs):

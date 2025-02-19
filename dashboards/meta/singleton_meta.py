@@ -3,6 +3,7 @@ import threading
 
 class SingletonMeta(type):
     """Thread-safe Singleton Metaclass"""
+
     _instances = {}
     _lock = threading.Lock()
 

@@ -8,6 +8,7 @@ class Dataset:
     """
     A class that represents a sds
     """
+
     dataset_id: str
     period: str
     survey_id: str
@@ -44,11 +45,13 @@ class Dataset:
         date_values = [self.published_at] if self.published_at else []
 
         # Create a string representation of the dataset
-        main_string = (" ".join(
+        main_string = " ".join(
             [
-                str(val).lower() for val in self.__dict__.values() if val and val not in date_values
+                str(val).lower()
+                for val in self.__dict__.values()
+                if val and val not in date_values
             ]
-        ))
+        )
 
         # Add the date values
         date_strings = [self._get_date_string(date_val) for date_val in date_values]

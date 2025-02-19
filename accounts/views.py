@@ -9,10 +9,10 @@ from django.views.decorators.http import require_POST
 def logout_view(request):
     """Logs out the user and redirects to the index page."""
     logout(request)
-    return redirect('index')
+    return redirect("index")
 
 
 @login_required
 def profile(request):
     """Renders the user profile page."""
-    return render(request, 'accounts/profile.html')
+    return render(request, "accounts/profile.html")

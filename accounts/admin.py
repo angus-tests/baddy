@@ -16,10 +16,20 @@ class CustomUserAdmin(UserAdmin):
 
     # Ensure email appears when adding a new user
     add_fieldsets = (
-        (None, {
-            "classes": ("wide",),
-            "fields": ("username", "email", "password1", "password2", "groups", "is_staff"),
-        }),
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": (
+                    "username",
+                    "email",
+                    "password1",
+                    "password2",
+                    "groups",
+                    "is_staff",
+                ),
+            },
+        ),
     )
 
     # Get read-only fields in the change form
@@ -34,10 +44,30 @@ class CustomUserAdmin(UserAdmin):
         # If the user being viewed is a superuser, prevent editing groups (unless the current user is a superuser)
         if obj.is_superuser and not user.is_superuser:
             # Return all fields as read-only
-            return ['username', 'password', 'email', 'first_name', 'last_name', 'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions', 'last_login', 'date_joined']
+            return [
+                "username",
+                "password",
+                "email",
+                "first_name",
+                "last_name",
+                "is_active",
+                "is_staff",
+                "is_superuser",
+                "groups",
+                "user_permissions",
+                "last_login",
+                "date_joined",
+            ]
 
         # Return the default read-only fields
-        return ["is_superuser", "is_staff", "is_active", "last_login", "date_joined", 'user_permissions']
+        return [
+            "is_superuser",
+            "is_staff",
+            "is_active",
+            "last_login",
+            "date_joined",
+            "user_permissions",
+        ]
 
 
 admin.site.register(CustomUser, CustomUserAdmin)

@@ -1,5 +1,7 @@
 from dashboards.factories.sds.dataset_factory import DatasetFactory
-from dashboards.interfaces.sds.dataset_repository_interface import DatasetRepositoryInterface
+from dashboards.interfaces.sds.dataset_repository_interface import (
+    DatasetRepositoryInterface,
+)
 
 
 class FakeDatasetRepository(DatasetRepositoryInterface):
@@ -78,7 +80,7 @@ class FakeDatasetRepository(DatasetRepositoryInterface):
                 "schema_version": "v2",
                 "survey_id": 7890,
                 "published_at": "2022-10-01T00:00:00",
-            }
+            },
         ]
 
     def get_by_id(self, dataset_id):
@@ -89,4 +91,3 @@ class FakeDatasetRepository(DatasetRepositoryInterface):
 
     def get_all(self):
         return [DatasetFactory.from_dict(dataset) for dataset in self.datasets]
-

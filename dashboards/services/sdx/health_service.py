@@ -1,4 +1,6 @@
-from dashboards.interfaces.sdx.sdx_app_repository_interface import SDXAppRepositoryInterface
+from dashboards.interfaces.sdx.sdx_app_repository_interface import (
+    SDXAppRepositoryInterface,
+)
 from dashboards.interfaces.service import Service
 
 

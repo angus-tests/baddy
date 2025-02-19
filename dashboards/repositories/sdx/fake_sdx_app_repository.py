@@ -1,7 +1,9 @@
 from faker import Faker
 
 from dashboards.factories.sdx.sdx_app_factory import SDXAppFactory
-from dashboards.interfaces.sdx.sdx_app_repository_interface import SDXAppRepositoryInterface
+from dashboards.interfaces.sdx.sdx_app_repository_interface import (
+    SDXAppRepositoryInterface,
+)
 from dashboards.dto.sdx.sdx_app import SDXApp
 
 
@@ -20,23 +22,22 @@ class FakeSDXAppRepository(SDXAppRepositoryInterface):
                 "name": "SDX-Testy",
                 "version": "0.3.2",
                 "status": "healthy",
-                "description": "A test app for the SDX system"
+                "description": "A test app for the SDX system",
             },
             {
                 "slug": "sdx-paul",
                 "name": "SDX-Paul",
                 "version": "6.6.6",
                 "status": "unhealthy",
-                "description": "A performance testing app for the SDX system"
+                "description": "A performance testing app for the SDX system",
             },
             {
                 "slug": "sdx-survey",
                 "name": "SDX-Survey",
                 "version": "0.9.10",
                 "status": "healthy",
-                "description": "App for controlling surveys in the SDX system"
+                "description": "App for controlling surveys in the SDX system",
             },
-
         ]
 
     def get_by_slug(self, slug: str) -> SDXApp:
@@ -56,5 +57,3 @@ class FakeSDXAppRepository(SDXAppRepositoryInterface):
         :return:
         """
         return [SDXAppFactory.from_dict(app) for app in self.app_data]
-
-

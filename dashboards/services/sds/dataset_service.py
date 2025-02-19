@@ -1,4 +1,6 @@
-from dashboards.interfaces.sds.dataset_repository_interface import DatasetRepositoryInterface
+from dashboards.interfaces.sds.dataset_repository_interface import (
+    DatasetRepositoryInterface,
+)
 from dashboards.interfaces.service import Service
 from dashboards.dto.sds.dataset import Dataset
 
@@ -45,8 +47,7 @@ class DatasetService(Service):
 
         # Filter datasets based on the search query
         return [
-            dataset for dataset in datasets
+            dataset
+            for dataset in datasets
             if all(term in dataset.get_search_string() for term in search_terms)
         ]
-
-

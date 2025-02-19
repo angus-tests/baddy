@@ -12,8 +12,14 @@ class Command(BaseCommand):
         password = settings.ADMIN_PASSWORD
 
         if not username or not email or not password:
-            self.stdout.write(self.style.ERROR("Please provide ADMIN_USERNAME, ADMIN_EMAIL and ADMIN_PASSWORD environment variables."))
-            raise ValueError("Please provide ADMIN_USERNAME, ADMIN_EMAIL and ADMIN_PASSWORD environment variables.")
+            self.stdout.write(
+                self.style.ERROR(
+                    "Please provide ADMIN_USERNAME, ADMIN_EMAIL and ADMIN_PASSWORD environment variables."
+                )
+            )
+            raise ValueError(
+                "Please provide ADMIN_USERNAME, ADMIN_EMAIL and ADMIN_PASSWORD environment variables."
+            )
 
         # Create the superuser
         User = get_user_model()

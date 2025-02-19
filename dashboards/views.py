@@ -10,7 +10,6 @@ from dashboards.services.sds.dataset_service import DatasetService
 @login_required
 @user_passes_test(lambda u: has_dashboard_access(u, "dataset_dashboard"))
 def dataset_dashboard(request):
-
     number_of_results_per_page = 50
 
     # Load the sds service
@@ -38,13 +37,13 @@ def dataset_dashboard(request):
     return render(
         request,
         "dashboards/datasets.html",
-        {"dataset_page": page_obj, "search_query": search_query},)
+        {"dataset_page": page_obj, "search_query": search_query},
+    )
 
 
 @login_required
 @user_passes_test(lambda u: has_dashboard_access(u, "sdx_health_dashboard"))
 def sdx_health_dashboard(request):
-
     # Load the health service
     health_service = get_health_service()
 

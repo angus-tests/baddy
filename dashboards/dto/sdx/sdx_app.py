@@ -7,6 +7,7 @@ class AppStatus:
     A class that represents the status
     of an app in the SDX system
     """
+
     HEALTHY = "healthy"
     UNHEALTHY = "UNHEALTHY"
     UNKNOWN = "unknown"
@@ -18,6 +19,7 @@ class SDXApp:
     A class that represents an app
     in the SDX system
     """
+
     slug: str
     name: str
     version: str

@@ -17,5 +17,4 @@ else:
     from baddy.settings.development import *
 
 # Import admin settings
-from baddy.settings.admin import * # noqa
-
+from baddy.settings.admin import *  # noqa
