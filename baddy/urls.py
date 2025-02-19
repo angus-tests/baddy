@@ -26,7 +26,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("home/", views.home, name="home"),
     path(
-        "dashboards/", include("dashboards.urls")
+        "dashboards/", include("apps.dashboards.urls")
     ),  # Include dashboard-specific routes
-    path("", include("accounts.urls")),  # Include account routes
+    path("", include("apps.accounts.urls")),  # Include account routes
 ]

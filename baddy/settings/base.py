@@ -11,8 +11,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "baddy",
-    "dashboards",
-    "accounts",
+    "apps.dashboards",
+    "apps.accounts",
     "corsheaders",
 ]
 

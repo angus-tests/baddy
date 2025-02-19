@@ -1,11 +1,11 @@
 from unittest.mock import MagicMock
 from django.test import TestCase
 
-from dashboards.factories.sds.dataset_factory import DatasetFactory
-from dashboards.interfaces.sds.dataset_repository_interface import (
+from apps.dashboards.factories.sds.dataset_factory import DatasetFactory
+from apps.dashboards.interfaces.sds.dataset_repository_interface import (
     DatasetRepositoryInterface,
 )
-from dashboards.services.sds.dataset_service import DatasetService
+from apps.dashboards import DatasetService
 
 
 class TestDatasetService(TestCase):
