@@ -33,12 +33,10 @@ npm run watch
 python manage.py migrate
 python manage.py runserver
 ```
-### Seeding groups
+### Seeding
 
-To seed the groups, run the following command:
-```bash
-python manage.py seed_groups
-```
+Seeding is done automatically during the migration process. The seed data is located in the `apps/accounts/management/commands` directory.
+
 
 ### Create a superuser
 
@@ -63,7 +61,7 @@ To switch between development and production settings, set the `DJANGO_ENV` envi
 
 ## Docker locally
 
-To run the app locally with Docker, run the following command:
+To build a docker image, run the following command:
 
 ```bash
 docker build -t baddy .
