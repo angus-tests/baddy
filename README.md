@@ -20,11 +20,25 @@ git clone git@github.com:angus-tests/baddy.git
 poetry install
 ```
 
-### Start Tailwind CSS
+### Start Vite server
 
 ```bash
 npm i
-npm run watch
+npm run dev
+```
+
+### Create a `.env` file
+
+```bash
+cp .env.example .env
+```
+
+Adjust the values in the `.env` file as needed...
+
+```
+ADMIN_USERNAME=admin
+ADMIN_EMAIL=admin@gmail.com
+ADMIN_PASSWORD=password
 ```
 
 ### Migrate & run the app
@@ -37,15 +51,9 @@ python manage.py runserver
 
 Seeding is done automatically during the migration process. The seed data is located in the `apps/accounts/management/commands` directory.
 
+### Visit the app
 
-### Create a superuser
-
-To access the admin panel, create a superuser with the following command:
-```bash
-python manage.py createsuperuser
-```
-
-Then login to the admin panel at http://127.0.0.1:8000/admin/
+Open your browser and visit `http://localhost:8000`.
 
 ## Testing when `DEBUG=False`
 
