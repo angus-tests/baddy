@@ -10,7 +10,7 @@ ENV PYTHONUNBUFFERED=1 \
     PIP_DEFAULT_TIMEOUT=100 \
     POETRY_VERSION=1.8.2 \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
-    PATH="/root/.local/bin:$PATH"
+    PATH="/app/.venv/bin:/root/.local/bin:$PATH"
 
 # Install system dependencies (only required for build)
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -20,11 +20,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Poetry
+# Install Poetry in builder
 RUN curl -sSL https://install.python-poetry.org | python3 -
-
-# **Ensure Poetry is in PATH** before running install
-RUN export PATH="/root/.local/bin:$PATH"
 
 # Set working directory
 WORKDIR /app
@@ -54,18 +51,21 @@ RUN npm run build
 # ==============================
 FROM python:3.13-slim
 
-# Install only runtime system dependencies (libpq5 instead of libpq-dev, no gcc)
+# Install only runtime system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq5 nginx \
     && rm -rf /var/lib/apt/lists/*
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
-    PATH="/app/.venv/bin:$PATH" \
+    PATH="/app/.venv/bin:/root/.local/bin:$PATH" \
     DJANGO_ENV=production
 
 # Set working directory
 WORKDIR /app
+
+# Copy Poetry from builder
+COPY --from=builder /root/.local /root/.local
 
 # Copy installed Python dependencies (Poetry virtual environment)
 COPY --from=builder /app/.venv /app/.venv
