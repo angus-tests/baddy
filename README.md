@@ -95,3 +95,23 @@ When deploying the app, make sure to set the following environment variables:
 | `ADMIN_EMAIL`            | Email address for the initial superuser.                         | `admin@example.com`           |
 | `ADMIN_PASSWORD`         | Password for the initial superuser.                              | `password`                    |
 
+## Linting
+
+Ensure poetry dependencies are installed ...
+
+```
+poetry install
+```
+
+
+To run black ...
+
+```
+poetry run black .
+```
+
+To run autoflake and remove unused imports ...
+
+```
+poetry run autoflake --remove-all-unused-imports --recursive --in-place .
+```
