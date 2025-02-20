@@ -20,11 +20,25 @@ git clone git@github.com:angus-tests/baddy.git
 poetry install
 ```
 
-### Start Tailwind CSS
+### Start Vite server
 
 ```bash
 npm i
-npm run watch
+npm run dev
+```
+
+### Create a `.env` file
+
+```bash
+cp .env.example .env
+```
+
+Adjust the values in the `.env` file as needed...
+
+```
+ADMIN_USERNAME=admin
+ADMIN_EMAIL=admin@gmail.com
+ADMIN_PASSWORD=password
 ```
 
 ### Migrate & run the app
@@ -33,21 +47,13 @@ npm run watch
 python manage.py migrate
 python manage.py runserver
 ```
-### Seeding groups
+### Seeding
 
-To seed the groups, run the following command:
-```bash
-python manage.py seed_groups
-```
+Seeding is done automatically during the migration process. The seed data is located in the `apps/accounts/management/commands` directory.
 
-### Create a superuser
+### Visit the app
 
-To access the admin panel, create a superuser with the following command:
-```bash
-python manage.py createsuperuser
-```
-
-Then login to the admin panel at http://127.0.0.1:8000/admin/
+Open your browser and visit `http://localhost:8000`.
 
 ## Testing when `DEBUG=False`
 
@@ -63,7 +69,7 @@ To switch between development and production settings, set the `DJANGO_ENV` envi
 
 ## Docker locally
 
-To run the app locally with Docker, run the following command:
+To build a docker image, run the following command:
 
 ```bash
 docker build -t baddy .
@@ -95,3 +101,23 @@ When deploying the app, make sure to set the following environment variables:
 | `ADMIN_EMAIL`            | Email address for the initial superuser.                         | `admin@example.com`           |
 | `ADMIN_PASSWORD`         | Password for the initial superuser.                              | `password`                    |
 
+## Linting
+
+Ensure poetry dependencies are installed ...
+
+```
+poetry install
+```
+
+
+To run black ...
+
+```
+poetry run black .
+```
+
+To run autoflake and remove unused imports ...
+
+```
+poetry run autoflake --remove-all-unused-imports --recursive --in-place .
+```

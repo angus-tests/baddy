@@ -14,8 +14,8 @@ STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
 
 STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
 # Database Configuration
@@ -40,7 +40,7 @@ if CLOUDRUN_SERVICE_URL:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 else:
     ALLOWED_HOSTS = ["*"]
-    CSRF_TRUSTED_ORIGINS = ['http://localhost:8080', 'http://localhost:8000']
+    CSRF_TRUSTED_ORIGINS = ["http://localhost:8080", "http://localhost:8000"]
 
 
 # Security Settings

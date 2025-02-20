@@ -12,10 +12,9 @@ DJANGO_ENV = os.getenv("DJANGO_ENV", "development").lower()
 
 # Dynamically import the correct settings module
 if DJANGO_ENV == "production":
-    from baddy.settings.production import *
+    from baddy.settings.production import * # noqa
 else:
-    from baddy.settings.development import *
+    from baddy.settings.development import * # noqa
 
 # Import admin settings
-from baddy.settings.admin import * # noqa
-
+from baddy.settings.admin import *  # noqa

@@ -11,9 +11,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "baddy",
-    "dashboards",
-    "accounts",
-    "corsheaders"
+    "apps.dashboards",
+    "apps.accounts",
+    "corsheaders",
 ]
 
 # Middleware
@@ -32,8 +32,7 @@ MIDDLEWARE = [
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates']
-        ,
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -55,9 +54,9 @@ WSGI_APPLICATION = "baddy.wsgi.application"
 
 # Authentication
 AUTH_USER_MODEL = "accounts.CustomUser"
-LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = "/login"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 
 # Internationalization

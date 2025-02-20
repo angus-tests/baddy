@@ -1,5 +1,5 @@
 # ==============================
-# 1. Build Stage (Dependencies)
+# 1. Builder Stage (Python Dependencies)
 # ==============================
 FROM python:3.13-slim AS builder
 
@@ -9,46 +9,41 @@ ENV PYTHONUNBUFFERED=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
     POETRY_VERSION=1.8.2 \
-    PATH="/root/.local/bin:$PATH"
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    PATH="/app/.venv/bin:/root/.local/bin:$PATH"
 
-# Set working directory
-WORKDIR /app
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
+# Install system dependencies (only required for build)
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     curl \
     git \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Poetry
+# Install Poetry in builder
 RUN curl -sSL https://install.python-poetry.org | python3 -
-
-# Copy only dependency files to leverage caching
-COPY pyproject.toml poetry.lock /app/
-
-# Install dependencies without virtual environment
-RUN poetry install --no-root
-
-# ==============================
-# 2. Build Stage (Tailwind & Static Files)
-# ==============================
-FROM node:20 AS frontend-builder
 
 # Set working directory
 WORKDIR /app
 
-# Copy only package.json and package-lock.json for better caching
-COPY package.json package-lock.json /app/
+# Copy only dependency files to leverage caching
+COPY pyproject.toml poetry.lock ./
 
-# Install Tailwind & frontend dependencies
+# Install dependencies inside the project virtual environment
+RUN poetry install --no-root --no-dev
+
+# ==============================
+# 2. Frontend Builder Stage (Tailwind & Static Files)
+# ==============================
+FROM node:20 AS frontend-builder
+
+# Set working directory and install Node dependencies
+WORKDIR /app
+COPY package.json package-lock.json ./
 RUN npm install
 
-# Copy the rest of the project (only frontend files for now)
-COPY . /app/
-
-# Build Tailwind CSS
+# Copy frontend files and build Tailwind CSS
+COPY . .
 RUN npm run build
 
 # ==============================
@@ -56,54 +51,47 @@ RUN npm run build
 # ==============================
 FROM python:3.13-slim
 
+# Install only runtime system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq5 nginx \
+    && rm -rf /var/lib/apt/lists/*
+
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
-    PATH="/root/.local/bin:$PATH"
+    PATH="/app/.venv/bin:/root/.local/bin:$PATH" \
+    DJANGO_ENV=production
 
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies for Nginx, PostgreSQL, and Python
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    gcc libpq-dev nginx \
-    && apt-get clean
-
-
-# Install only runtime dependencies (minimal)
+# Copy Poetry from builder
 COPY --from=builder /root/.local /root/.local
-COPY --from=builder /app/pyproject.toml /app/poetry.lock /app/
 
-# Reinstall dependencies in case of missing files
-RUN poetry install --no-root --no-dev
+# Copy installed Python dependencies (Poetry virtual environment)
+COPY --from=builder /app/.venv /app/.venv
 
-# Copy Django application files
-COPY . /app/
+# Copy application source code (only necessary files)
+COPY . .
 
-# Copy built static files from frontend builder stage
+# Copy built static files from the frontend builder stage
 COPY --from=frontend-builder /app/static /app/static
 
-# Ensure Django_env is production
-ENV DJANGO_ENV=production
-
-# Ensure static files are collected
+# Collect static files using Poetry
 RUN poetry run python manage.py collectstatic --noinput
 
 # Copy the Nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Create a new user and group for Nginx
-RUN addgroup --system nginx && adduser --system --ingroup nginx nginx
+# Create a new user and group for Nginx and adjust permissions
+RUN addgroup --system nginx && adduser --system --ingroup nginx nginx && \
+    chown -R nginx:nginx /app/static
 
-# Ensure the Nginx user has access to the static files
-RUN chown -R nginx:nginx /app/static
-
-# Ensure the entrypoint script is accessible and executable
+# Copy and set executable the entrypoint script
 COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
-# Expose the required port for Nginx
+# Expose the port for Nginx
 EXPOSE 80
 
-# Ensure entrypoint script runs
+# Set the entrypoint
 ENTRYPOINT ["/app/entrypoint.sh"]
