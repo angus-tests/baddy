@@ -16,7 +16,6 @@ class DatasetRepositoryInterface(ABC):
         :param dataset_id:
         :return: The Dataset object.
         """
-        pass
 
     @abstractmethod
     def get_all(self) -> list[Dataset]:
@@ -24,4 +23,3 @@ class DatasetRepositoryInterface(ABC):
         Get all datasets.
         :return: list of Dataset objects.
         """
-        pass

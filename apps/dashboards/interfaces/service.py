@@ -9,4 +9,3 @@ class Service(metaclass=SingletonMeta):
     and are singletons
     """
 
-    pass

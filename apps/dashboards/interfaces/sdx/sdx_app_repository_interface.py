@@ -16,7 +16,6 @@ class SDXAppRepositoryInterface(ABC):
         :param slug: A unique identifier for the app.
         :return: The SDXApp object.
         """
-        pass
 
     @abstractmethod
     def get_all(self) -> list[SDXApp]:
@@ -24,4 +23,3 @@ class SDXAppRepositoryInterface(ABC):
         Get all SDX apps.
         :return: list of SDXApp objects.
         """
-        pass
